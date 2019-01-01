@@ -1,6 +1,6 @@
 ## 欢迎使用沉鱼多语种网站集群系统
 
-SunkenFish是一款基于ThinkPHP、Layui的多语种网站集群系统。
+[SunkenFish](http://www.fakeruhe.com)是一款基于ThinkPHP、Layui的多语种网站集群系统。
 
 ## 系统特点
 
