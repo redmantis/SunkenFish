@@ -1,0 +1,60 @@
+<?php
+    if(C('LAYOUT_ON')) {
+        echo '{__NOLAYOUT__}';
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit"/>
+    <title>系统发生错误</title>
+    <meta name="keywords" content="{$web_config.web_keyword}"/>
+    <meta name="description" content="{$web_config.web_description}"/>
+    <style>
+        #error {
+            position: absolute;
+            top:20%;
+            left:20%;
+            transform: translateY(-20%);
+            transform: translateX(-20%);
+        }
+        #error span {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 24px;
+            color: #383838;
+            font-family: "Microsoft YaHei" ! important;
+        }
+    </style>
+</head>
+<body>    
+    <div id="error">
+       <span><img src="/Public/images/error.png" alt=""></span>
+        <span><?php echo strip_tags($e['message']);?></span>
+
+<?php if(isset($e['file'])) {?>
+	<div class="info">
+		<div class="title">
+			<h3>错误位置</h3>
+		</div>
+		<div class="text">
+			<p>FILE: <?php echo $e['file'] ;?> &#12288;LINE: <?php echo $e['line'];?></p>
+		</div>
+	</div>
+<?php }?>
+<?php if(isset($e['trace'])) {?>
+	<div class="info">
+		<div class="title">
+			<h3>TRACE</h3>
+		</div>
+		<div class="text">
+			<p><?php echo nl2br($e['trace']);?></p>
+		</div>
+	</div>
+<?php }?>
+        
+    </div>   
+</body>
+</html>

@@ -1,0 +1,148 @@
+<extend name="Public:base" />
+<block name="css">
+</block>
+<block name="body">
+    <blockquote class="layui-elem-quote">   
+        {$buttonlist}
+        <div class="layui-inline">
+            <a  class="layui-btn layui-btn-normal tree-toggle" idd="0"  > <i class="layui-icon layui-icon-male"></i>展开全部节点</a>
+        </div>
+    </blockquote>    
+    <table class="layui-table" id="dateTable" lay-size="sm">
+        <colgroup>
+            <col width="70">
+            <col width="40">                   
+        <foreach name="showmap" item="v" key='k'>
+            <col width="{$v.width}">
+        </foreach> 
+        </colgroup>
+        <thead>
+            <tr>
+                <th><input id="selectall" class="selectall" type="checkbox" />
+                    <label for="selectall">全选</label> </th>
+                <th></th>
+        <foreach name="showmap" item="v" key='k'>
+            <th>{$v|showtableTitle=$k}</th>  
+        </foreach> 
+        </tr>            
+
+        </thead> 
+        <tbody id="view">
+        <form action="{:U('Common/sortset',array('tb'=>$tabelname))}" class="layui-form" id="sortform" method='post'>
+
+            <foreach name="dl" item="v" key='k'>
+                <tr id="{$v.id}" xpath="{$v.xpath}" parentid="{$v.parentid}" status="" class="ayui-form-item <gt name='v.deep' value='0'>hidden</gt>"> 
+                    <td><input class="info linkxpath tid" type="checkbox" name="colid[]" value="{$v.id}" xpath="{$v.xpath}" {$v.id|crackin=$checkarray} /></td>
+                    <td>  <if condition="$v.haschild eq 1">                   
+                    <a idd="{$v.id}" xpath="{$v.xpath}" class="switchtree"> <i class='layui-icon'>&#xe623;</i> </a>                        
+                </if>
+                </td>
+                <foreach name="showmap" item="val" key='key'>
+                    <td class="">
+                        <div class="{$val.class}">
+                            {$v|showTableContent=$key,$val,$userPower}</div>
+                    </td>    
+                </foreach>   
+                </tr>                               
+            </foreach>
+        </form> 
+        </tbody>
+    </table>
+</body>
+
+
+<script src="__STATIC__/js/listtools.js?t={:MUYUVERSION}" type="text/javascript"></script>
+<script type="text/javascript">
+    layui.config({
+        base: baselayui
+    }).use(['jquery', 'form', 'table', 'laypage', 'layer', 'lay_common', 'laytpl'], function () {
+        var $ = layui.jquery,
+                form = layui.form,
+                layer = layui.layer,
+                table = layui.table,
+                common = layui.lay_common;
+
+        /**添加*/
+        $(".userAdd_btn").click(function () {
+            var url = "{:U('add')}";
+            common.cmsLayOpen('新增用户', url, '750px', '400px');
+        });
+
+        /**修改用户*/
+        $("body").on("click", ".diag_modal", function () {
+            var dataurl = $(this).attr("data-url");
+            var datatitle = $(this).attr("data-title");
+            common.cmsLayOpen(datatitle, dataurl, '750px', '400px');
+
+        });
+
+
+
+        $(".text-overflow").hover(function () {
+            var content = $(this).text().replace(/\|--/ig, '');
+            $("#footertip", window.parent.document).html(content);
+        });
+
+        /**批量（删除）处理*/
+        $("body").on("click", ".diag_deleteall", function () {
+
+            var dataurl = $(this).attr("data-url");
+            var datatitle = $(this).attr("data-title");
+            var message = $(this).attr("data-message");
+            if (message.length == 0) {
+                message = "数据删除后将不将恢复，确定要删除吗？";
+            }
+            var ids = "";
+            $("#dateTable tbody input[type='checkbox']:checked").each(function () {
+                ids += this.value + ',';
+            });
+            if (ids == '') {
+                common.cmsLayErrorMsg("没有选择数据");
+                return;
+            }
+            var suffix = $("#suffix").val();
+            var param = {idlist: ids, suffix: suffix};
+            common.ajaxCmsConfirm(datatitle, message, dataurl, param,tokenname);
+        });
+
+        $(".tree-toggle").click(function () {
+            var idd = $(this).attr('idd');
+            if (idd == 0) {
+                $('tbody tr.hidden').toggleClass('hidden');
+                $(this).attr('idd', 1);
+                $(this).html("<i class=\"layui-icon layui-icon-female\"></i>关闭全部节点");
+                $(".switchtree").html("<i class='layui-icon layui-icon-triangle-d'></i>");
+            } else {
+                $('tbody tr').toggleClass('hidden');
+                $("[parentid=0]").toggleClass('hidden');
+                $(this).attr('idd', 0);
+                $(this).html("<i class=\"layui-icon layui-icon-male\"></i>展开全部节点");
+                $(".switchtree").html("<i class='layui-icon layui-icon-triangle-r'></i>");
+            }
+        });
+
+        $('.switchtree').click(function () {
+            var idd = $(this).attr('idd');
+            var xpath = $(this).attr('xpath');
+            $("tr[parentid='" + idd + "']").toggleClass('hidden');
+            if ($("tr[parentid='" + idd + "']").hasClass('hidden'))
+            {
+                $("tr[xpath^='" + xpath + "']").addClass('hidden');
+                $("tr[xpath='" + xpath + "']").removeClass('hidden');
+                $("tr[xpath^='" + xpath + "'] td a.switchtree").html("<i class='layui-icon'>&#xe623;</i>");
+                $(this).html("<i class='layui-icon'>&#xe623;</i>");
+            } else {
+                $(this).html("<i class='layui-icon'>&#xe625;</i>");
+            }
+        });
+
+    });
+    /**undefined 值 过滤*/
+    function objNull(obj) {
+        if (typeof (obj) == "undefined" || obj == null) {
+            return "";
+        }
+        return obj;
+    }
+</script>
+</block>

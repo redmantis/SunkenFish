@@ -1,0 +1,43 @@
+<extend name="Public:base" />
+<block name="body">
+
+    <section class="pro-list">
+      <include file="Public/proleft" />
+
+        <aside class="pro-rightsidebar">
+            <header>
+
+                <p></p>
+                <span>{$bcolums.title}</span>
+            </header>
+            <ul>
+                <foreach name="dlist" item="v" key="key"> 
+                    <li >
+                        <a href="{$v|productdetail}" title="{$v.title}">
+                            <div class="img-box">
+                                <img src="{$v|creatThumbImages=213,168}" alt="{$v.title}">
+                                <p>{$v.title|getSubstr=10}</p>
+                            </div>
+                        </a>
+                    </li>
+                </foreach>   
+
+            </ul>
+            <div class="pro_list_more_pages">
+                <ul>
+                    <notempty name='pagestr.up_page'>
+                        <li><a href="{$pagestr.up_page}" >上一页</a></li>
+                    </notempty> 
+                    <foreach name="pagestr.numlist" item="v" key="key"> 
+                        <li class=" <empty name='v.url'> pro-list-current</empty>"><a href="{$v.url}" >{$v.title}</a></li>
+                    </foreach>
+                    <notempty name='pagestr.down_page'>
+                        <li><a href="{$pagestr.down_page}">下一页</a></li>
+                    </notempty>                 
+                </ul>
+            </div>
+        </aside>
+
+
+    </section>
+</block>

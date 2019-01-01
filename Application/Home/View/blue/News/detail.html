@@ -1,0 +1,32 @@
+<extend name="Public:base" />
+<div class="w1200"><div class="menu">
+        <block name="css">
+            <link type="text/css" href="__STATIC__/css/news-detail.css?t={:MUYUVERSION}" rel="stylesheet" />
+        </block>
+        <block name="body">
+    </div></div>
+<!--内容一-->
+<div class="main">
+   <include file="Public/about" />
+
+    <div class="main-r">
+        <div class="head">
+            <span> {:showTagbyValue('services')}</span><i> {:showTagbyValue('services','shorttitle')}</i>
+            <em>{:showTagbyValue('currentlocation')}&gt;&gt;<a href="#">{:showTagbyValue('services')}</a></em>    
+        </div>
+        <div class="zhong-jian">           
+            <div class="main02-r">
+                <h2>{$model.page_title}</h2>
+                 <h3> <span>{:showTagbyValue('postdate')}：{$model.posttime|date='Y-m-d',###}</span>           
+                <span>{:showTagbyValue('hitscount')}：<span class="collect_handle" collectid="{$model.id}" collecttable="news" showmod='0' collecttype="{:CollectType_Read}" tip1="0" tip0="0" title='点击量'></span></span>               
+                </h3>
+                <div class="newcontent">
+                {$model.content}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</block>
+<block name="footer"></block>
+

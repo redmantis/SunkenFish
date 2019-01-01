@@ -1,0 +1,139 @@
+<extend name="Public:base" />
+<block name="body">
+    <blockquote class="layui-elem-quote">   
+        {$titleinfo}
+        <div class="layui-inline">
+            <a  class="layui-btn layui-btn-normal tree-toggle" idd="0"  > <i class="layui-icon layui-icon-male"></i>展开全部节点</a>
+        </div>
+    </blockquote>  
+
+    <table class="layui-table" id="dateTable">
+        <colgroup>
+            <col width="80">
+            <col width="40">                   
+        <foreach name="showmap" item="v" key='k'>
+            <col width="{$v.width}">
+        </foreach> 
+        </colgroup>
+        <thead>
+            <tr>
+                <th><input id="selectall" class="selectall" type="checkbox" />
+                    <label for="selectall">全选</label> </th>
+                <th></th>
+        <foreach name="showmap" item="v" key='k'>
+            <th>{$v|showtableTitle}</th>  
+        </foreach> 
+
+    </tr>            
+
+</thead> <tbody id="view">
+
+
+<foreach name="dl" item="v" key='k'>
+    <tr id="{$v.id}" xpath="{$v.xpath}" parentid="{$v.parentid}" status="" class="ayui-form-item <gt name='v.deep' value='0'>hidden</gt> "> 
+        <td><input class="info linkxpathture tid" type="checkbox" name="colid[]" value="{$v.id}" xpath="{$v.xpath}" {$v.id|crackin=$checkarray} /></td>
+        <td>  <if condition="$v.haschild eq 1">                   
+        <a idd="{$v.id}" xpath="{$v.xpath}" class="switchtree"> <i class='layui-icon'>&#xe623;</i></a>                        
+    </if>
+    </td>
+    <foreach name="showmap" item="val" key='key'>
+        <td class="{$val.class}">{$v|showTableContent=$key,$val,$userPower}</td>    
+    </foreach>   
+    </tr>                               
+</foreach>
+
+</tbody>
+</table>
+<div class="layui-form-item">
+    <div class="layui-input-block"> 
+        <input type="hidden" name="id" id="idval" value="{$idval}" />
+        <button class="layui-btn" lay-submit="" lay-filter="submit1" id="submit1">立即提交</button>               
+    </div>
+</div>
+
+
+<script src="__STATIC__/js/listtools.js?t={:MUYUVERSION}" type="text/javascript"></script>
+<script type="text/javascript">
+    layui.config({
+        base: baselayui
+    }).use(['jquery', 'form', 'laypage', 'layer', 'lay_common', 'laytpl'], function () {
+        var $ = layui.jquery,
+                form = layui.form,
+                layer = layui.layer,
+                common = layui.lay_common;
+
+        $('tr.hidden').toggleClass('hidden');
+        $("tr a.switchtree").html("<i class='layui-icon'>&#xe625;</i>");
+
+        $(".tree-toggle").click(function () {
+            var idd = $(this).attr('idd');
+            if (idd == 0) {
+                $('tbody tr.hidden').toggleClass('hidden');
+                $(this).attr('idd', 1);
+                $(this).html("<i class=\"layui-icon layui-icon-female\"></i>关闭全部节点");
+                $(".switchtree").html("<i class='layui-icon layui-icon-triangle-d'></i>");
+            } else {
+                $('tbody tr').toggleClass('hidden');
+                $("[parentid=0]").toggleClass('hidden');
+                $(this).attr('idd', 0);
+                $(this).html("<i class=\"layui-icon layui-icon-male\"></i>展开全部节点");
+                $(".switchtree").html("<i class='layui-icon layui-icon-triangle-r'></i>");
+            }
+        });
+
+         $('.switchtree').click(function () {
+            var idd = $(this).attr('idd');
+            var xpath = $(this).attr('xpath');
+            $("tr[parentid='" + idd + "']").toggleClass('hidden');
+            if ($("tr[parentid='" + idd + "']").hasClass('hidden'))
+            {
+                $("tr[xpath^='" + xpath + "']").addClass('hidden');
+                $("tr[xpath='" + xpath + "']").removeClass('hidden');
+                $("tr[xpath^='" + xpath + "'] td a.switchtree").html("<i class='layui-icon'>&#xe623;</i>");
+                $(this).html("<i class='layui-icon'>&#xe623;</i>");
+            } else {
+                $(this).html("<i class='layui-icon'>&#xe625;</i>");
+            }
+        });
+        
+        $("body").on("click", "#submit1", function () {
+        
+        var ids = "";
+        $("#dateTable tbody input[type='checkbox']:checked").each(function () {
+            ids += this.value + ',';
+        });
+        
+        var id=$("#idval").val();
+       
+       if(id==""){
+           common.cmsLayErrorMsg("参数错误，请重新提交");
+            return;
+       }
+        
+//        if (ids == '') {
+//            common.cmsLayErrorMsg("没有选择数据");
+//            return;
+//        }    
+        $.ajax({
+            url: self_url,
+            type: 'post',
+            dataType: 'json',
+            data: {id:id,ids:ids},
+            success: function (data) {
+                if (data.status == 0) {
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引                   
+                        common.cmsLaySucMsg(data.msg);
+                        parent.layer.close(index); //再执行关闭   
+                } else {              
+                    common.cmsLayErrorMsg(data.msg);
+                }
+            }, error: function (data) {
+                //top.layer.close(index);
+            }
+        });
+        return false;
+    });
+
+    });
+</script>
+</block>

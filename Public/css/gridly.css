@@ -1,0 +1,64 @@
+.brick .delimg {
+    display: block;
+    color: white;
+    background: rgba(0, 150, 136, 0.5);
+    width: 20px;
+    height: 20px;    
+    top: 0;
+    right: 0;
+    float: right;
+    position:absolute;
+    text-align: center;
+    line-height: 20px; }
+
+.delimg{
+    cursor: pointer;
+}
+
+
+.brick img{
+    width: 100px;
+}
+
+.brick.small {
+    width: 100px;
+    height: 100px; }
+
+.brick.dragging {
+    opacity: 0.8; }
+
+.gridly
+{
+    position: relative;    
+}
+
+.brick{  
+    background-size: cover;   
+    -webkit-background-size: cover;   
+    -moz-background-size: cover;   
+    -o-background-size: cover;
+    float: left;
+    cursor: move;
+    margin: 10px;
+}
+.brick-dash img{
+    width: 100%;
+}
+
+.brick-dash { 
+    position: absolute; 
+    width: 150px; 
+    height: 150px; 
+    margin-right: 10px; 
+    border: 1px dashed blue; 
+    background: #ececec; 
+    opacity: 0.7; 
+} 
+
+.dash { 
+    float : left; 
+    width: 150px; 
+    height: 150px; 
+    margin-right: 10px; 
+    border: 1px dashed #f00; 
+}; 

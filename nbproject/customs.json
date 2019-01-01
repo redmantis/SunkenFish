@@ -1,0 +1,68 @@
+{
+    "elements": {
+        "include": {
+            "attributes": {
+                "file": {}
+            }
+        },
+        "eq": {},
+        "gt": {},
+        "empty": {},
+        "switch": {},
+        "extend": {
+            "attributes": {
+                "name": {}
+            }
+        },
+        "foreach": {
+            "attributes": {
+                "item": {},
+                "name": {},
+                "key": {}
+            }
+        },
+        "default": {},
+        "notempty": {
+            "attributes": {
+                "name": {}
+            }
+        },
+        "else": {},
+        "php": {},
+        "block": {
+            "attributes": {
+                "name": {}
+            }
+        },
+        "neq": {
+            "attributes": {
+                "name": {}
+            }
+        },
+        "if": {},
+        "case": {}
+    },
+    "attributes": {
+        "lay-verify": {
+            "context": "input"
+        },
+        "about-ctr": {
+            "context": "a"
+        },
+        "carousel-item": {
+            "context": "div"
+        },
+        "layui-verify": {
+            "context": "div"
+        },
+        "lay-filter": {
+            "context": "table"
+        },
+        "lay-submit": {
+            "context": "button"
+        },
+        "tips": {
+            "context": "div"
+        }
+    }
+}

@@ -1,0 +1,135 @@
+<extend name="Public:base" />
+<block name="css">
+    <link type="text/css" href="__STATIC__/css/style.css?t={:MUYUVERSION}" rel="stylesheet" />
+</block>
+<block name="body">
+    <!--内容一-->
+    <div class="main-index">
+        <div class="box1">
+            <h2>{:showTagbyMark('dynamic','','texttag','tagvalue')}<span>{:showTagbyMark('dynamic','','texttag','tagvalue','shorttitle')}</span></h2>
+            <div class="texiao">
+                <div class="GD">  
+                    <foreach name="vclist" item="v" key="key"> 
+                        <p><i>{$v.posttime|date='Y-m-d',###}<br />{$v.page_title}</i><br />
+                            {$v|showsummary=80}   
+                        </p> 
+                    </foreach>
+                </div>
+            </div>
+            <div class="a" >
+                <foreach name="vclist" item="v" key="key">
+                    <php>$k=$key+1;</php>
+                    <a href="javascript:" class="a{$k} {:comparenav($key,0,'on1')}"></a>          
+                </foreach>
+            </div>
+        </div>
+
+        <div class="box2">
+            <h2>{:showTagbyValue('services')}<span>{:showTagbyValue('services','shorttitle')}</span></h2>            
+            <ul>
+                <foreach name="hotlist" item="v" key="key"> 
+                    <li> <a href="{$v|makeurl}" target="_blank"><img src="{$v|creatThumbImages=454,219}" /></a></li>            
+                </foreach>
+            </ul>
+            <div id="a" >
+                <foreach name="hotlist" item="v" key="key">
+                    <php>$k=$key+1;</php>
+                    <a href="javascript:" class="a{$k} {:comparenav($key,0,'on1')}"></a>          
+                </foreach>
+            </div>
+        </div>
+        <div class="box3">
+            <h2>{:showTagbyValue('Contact')}
+                <span>{:showTagbyValue('Contact','shorttitle')}</span></h2>
+            <form class="layui-form">
+                <table class="lvmessage" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="width: 40px;">{:showTagbyValue('truename')}</td>
+                        <td><input type="text" name='fromname' class="user" lay-verify="required" lay-verify-msg="{:showTagbyValue('truename')} {:showTagbyValue('verify_required')}" /></td>
+                    </tr>
+                    <tr>
+                        <td>{:showTagbyValue('company-mail')}</td>
+                        <td><input type="text" class="user" name='from'  lay-verify="required" lay-verify-msg="{:showTagbyValue('company-mail')} {:showTagbyValue('verify_required')}" /></td>
+                    </tr>                  
+                    <tr>
+                        <td valign="top">{:showTagbyValue('message')}</td>
+                        <td><textarea cols="25" rows="6" class="liuyan" name='message' lay-verify="required" lay-verify-msg="{:showTagbyValue('message')} {:showTagbyValue('verify_required')}" ></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" name="action" value="leaving_message" />
+                            <input type="hidden" name="to" value="{$bconfig.web_mail}" /> </td>
+                        <td><input type="button" value="{:showTagbyMark('Backstage_Submit')}"  lay-submit="" lay-filter="submit1" class="TJ"/></td>
+                    </tr>
+                </table>
+            </form>
+            <!--            <div class="login">
+                            <a href="www.weibo.com" class="weibo"><img src="__STATIC__/images/weib.gif"/></a><a href="#" class="qq"><img src="__STATIC__/images/qq.gif" /></a><a href="#" class="weixin"><img src="__STATIC__/images/weixin.gif" /></a>
+                        </div>-->
+        </div>
+
+    </div>
+    <!--内容二-->
+    <div class="main01">
+        <h2><span>{:showTagbyValue('Product')}</span></h2>
+        <br />
+        <!--        <a href="#">会员专属活动</a><a href="#">更多精彩</a><a href="#">更多实惠</a><a href="#">不容错过</a>-->
+    </div>
+    <!--内容三-->
+    <div class="main03">
+        <php>$cate=getgoodscatebypath($csidid,"single");           
+        </php>
+        <div class="main03-l" style="background-image:url({$cate.thumb});background-size:100%;background-repeat: no-repeat;">           
+            <a href="{$cate|getGoodsCateUrl}#pro" title="{$cate.title}"><img src="__STATIC__/images/button.gif" /></a>
+        </div>
+        <div class="main03-r">
+            <div class="top">
+                <php>$cate=getgoodscatebypath($csidid,"Universal");
+                   
+                </php>
+                <div class="left" style="background-image:url({$cate.thumb});background-size:100%;background-repeat: no-repeat;">
+                    <a href="{$cate|getGoodsCateUrl}#pro"  title="{$cate.title}"><img src="__STATIC__/images/button.gif" /></a>
+                </div>
+                <php>$cate=getgoodscatebypath($csidid,"Double");                   
+                </php>
+                <div class="right" style="background-image:url({$cate.thumb});background-size:100%;background-repeat: no-repeat;">
+                    <a href="{$cate|getGoodsCateUrl}#pro"  title="{$cate.title}"><img src="__STATIC__/images/button.gif" /></a>
+                </div>
+            </div>
+            <div class="bottom">
+                <php>$cate=getgoodscatebypath($csidid,"lift-series");                   
+                </php>
+                <div class="zuo" style="background-image:url({$cate.thumb});background-size:100%;background-repeat: no-repeat;">
+                    <a href="{$cate|getGoodsCateUrl}#pro"  title="{$cate.title}"><img src="__STATIC__/images/button.gif" /></a>
+                </div>
+                <php>$cate=getgoodscatebypath($csidid,"other");                   
+                </php>
+                <div class="you" style="background-image:url({$cate.thumb});background-size:100%;background-repeat: no-repeat;">
+                    <a href="{$cate|getGoodsCateUrl}#pro"  title="{$cate.title}">
+                        <img src="__STATIC__/images/button.gif" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--内容四-->
+    <div class="yanzheng" style="height: 0px;"></div>
+    <div class="yanzheng" style="display: none;">
+        <ul>
+            <li><img src="__STATIC__/images/yanzheng.jpg" />
+                <b></b>
+                <div class="box">
+                    <i>足不出户，验证手中产品是否正品</i><br />
+                    <div class="txt-box">
+                        <em>请输入产品序列号</em>
+                        <input type="text" value="6520FZ0514" id="txt" />
+                        <a href="#"><img src="__STATIC__/images/4.jpg" /></a>
+                    </div>
+                    <div class="bigbox">
+                        <a href="#">正品验证</a><a href="#">延长质保</a>
+                    </div>
+                </div>
+
+            </li></ul>
+
+    </div>
+</block>
+<block name="footer"></block>

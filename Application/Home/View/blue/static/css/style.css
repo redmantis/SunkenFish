@@ -1,0 +1,106 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+img{ border:none;}
+li{ list-style:none;}
+a{ text-decoration:none;}
+i{ font-style:normal;}
+body{ font-size:12px;font-family:"微软雅黑";}
+i,em{ font-style:normal;}
+
+
+/* 头部 */
+.bg{ width:1200px; height:109px;margin:0 auto;}
+.tel{ width:914px; height:109px; float:right; position:relative;}
+.tel h2{ color:#014fb1; font-size:24px;font-family:"Tekton Pro";margin-top:35px; position:absolute; top:0; right:-40px;}
+
+
+/* 导航 */
+.nav{ width:100%; height:50px;  background:url(../images/nav-bg.jpg) repeat-x; position:relative;}
+.nav-bg{ margin:0 auto; width:1200px; height:px;}
+.nav ul{ margin-left:20px;}
+.nav ul li{ float:left; height:50px; width:80px; line-height:50px; margin-right:58px;}
+.nav ul li a{color:#ffffff;font-size:18px; display:block; height:46px; text-align:center;}
+.nav ul li a:hover{ border-bottom: #ff8a07 4px solid;}
+.nav ul li.on{border-bottom: #ff8a07 4px solid;height:46px;}
+
+#searchbox{ width:185px; height:26px;position:absolute; right:0; top:13px; margin-right:90px; line-height:26px;  }
+#wenben{color:#014fb1; font-family:"宋体"; width:185px; height:26px;border-radius:15px;-ms-border-radius:15px;-moz-border-radius:15px;-o-border-radius:15px;-webkit-border-radius:15px; border:none; position:relative;padding-left:10px; line-height:26px; }
+#searchbox img{ width:20px; height:19px; float:right; position:absolute; top:5px; right:5px;}
+
+/* banner */
+/*.banner{ width:100%; height:554px; overflow:hidden; position:relative;}
+.banner img{ width:1920; height:554; position:absolute; left:50%; margin-left:-960px;}*/
+
+ .TJ{ background:#337bd5; color:#FFF; width:88px; height:32px;font-family:"宋体";font-size:18px; border:1px solid #337bd5;}
+/*内容一*/
+.main-index{ width:1200px; height:184px; margin:0 auto; position:relative;}
+.texiao{ width:361px; overflow:hidden; height: 245px}
+.box1{ width:373px; height:329px; float:left; background:url(../images/news.png); padding-left:15px; position:absolute; top:-150px; overflow:hidden;}
+.box1 h2,.box2 h2,.box3 h2{ font-size:20px; color:#000000; margin-top:15px;  }
+.box1 span,.box2 span,.box3 span{ font-size:12px; color:#b3b2b2; font-family:"Times New Roman"; margin:5px;}
+.box1 p{ color:#3c3b3b; font-family:"宋体"; line-height:25px; padding-right:15px; padding-top:15px;}
+.box1 i{ color:#ff0000; font-size:14px;}
+.GD p{ float:left; width:360px;}
+#a,.a{ margin-top:10px;}
+.a1{display:block; border-bottom:#838383 8px solid; width:40px; float:left;}
+.a2,.a3{ display:block; border-bottom:#838383 8px solid; width:40px; float:left; margin-left:20px;}
+.a1:hover,#a .on1{display:block; border-bottom:#ff0000 8px solid; width:40px; float:left;}
+.a1{display:block; border-bottom:#838383 8px solid; width:40px; float:left;}
+.a2,.a3{ display:block; border-bottom:#838383 8px solid; width:40px; float:left; margin-left:20px;}
+.a1:hover,.on{display:block; border-bottom:#ff0000 8px solid; width:40px; float:left;}
+.box2{ width:477px; height:329px; float:left; background:url(../images/about-us.png); margin:0 10px; padding-left:15px;position:absolute; top:-150px; left:390px;}
+.box2 img{ width:454px; height:219px; margin-left:3px; margin-top:10px; margin-bottom:10px;}
+.box3{ width:299px; height:329px; float:right; background:url(../images/contact.png); line-height:25px;position:absolute; top:-150px; right:0;}
+.box3 table,.box3 h2{ margin-left:15px;}
+.txt,.txt1{ border:#CCC 1px solid; margin-left:10px;}
+.box3 img{width:50px; height:18px; margin-top:20px;}
+.submit{float:left; margin-left:10px;}
+.reset{float:right;}
+.login{ width:289px; height:67px; margin-top:35px;margin-left:6px;}
+.login img{ display:block;}
+.weibo{ width:100px; height:67px; float:left; background:#0089fd;}
+.weibo img,.qq img,.weixin img{ width:43px; height:43px; margin:12px 25px;}
+.qq{ width:90px; height:67px; float:left; margin:0 4px; background:#0089fd;}
+.weixin{ width:91px; height:67px; float:right; background:#0089fd;}
+
+.lvmessage td{ padding-top: 20px;}
+
+
+/*内容二*/
+.main01{ width:1200px; height:73px; margin:0 auto;}
+.main01 h2{  float:left; height:73px; line-height:73px; font-family:"宋体"; font-size:24px; margin-left:10px; }
+.main01 span{ margin-left:10px;}
+.main01 a{height:73px; line-height:40px; margin-left:20px; color:#656565; font-family:"宋体"; font-size:14px; }
+
+
+
+/*内容三*/
+.main03{ width:1200px; height:475px; margin:0 auto;}
+.main03-l{ width:450px; height:475px; float:left; background:url(../images/product1.jpg); position:relative;}
+.main03-l a{width:30px; height:30px; margin-left:50px; position:absolute; top:105px; }
+.main03-r{ width:750px; height:475px; float:right;}
+.top{ width:750px; height:227px;}
+.left{ background:url(../images/product2.jpg); width:444px; height:227px; position:relative; float:left}
+.left a{width:30px; height:30px; margin-left:40px; position:absolute; top:113px;  }
+.right{ width:306px; height:227px; background:url(../images/product3.jpg); float:right; position:relative;}
+.right a{width:30px; height:30px; margin-left:40px; position:absolute; top:113px;  }
+.bottom{ width:750px; height:248px; background:#F00}
+.zuo{ width:296px; height:248px; float:left; background:url(../images/product4.jpg); position:relative;}
+.zuo a{ width:30px; height:30px; margin-left:40px; position:absolute; top:113px; }
+.you{ width:454px; height:256px; background:url(../images/product5.jpg); float:right; position:relative;}
+.you a{ width:30px; height:30px; margin-left:40px; position:absolute; top:130px; } 
+
+/*内容四*/
+.yanzheng{ width:1200px; height:230px; margin:0 auto;margin-top:24px; position:relative;}
+.yanzheng ul li{width:1200px; height:230px; position:relative; }
+.yanzheng ul li b{ position:absolute;width:100%; height:230px;opacity:0.9; filter:alpha(opacity=90);background:#2aadd4;left:0; bottom:0;}
+.box{ position:absolute; width:100%; height:230px;left:0; bottom:0; text-align:center; font-size:21px; color:#FFF;}
+.box i{ height:230px; line-height:80px;}
+.txt-box{ width:740px; height:40px; margin:0 auto;}
+.txt-box em{ font-size:16px; float:left; height:40px; line-height:40px;}
+.txt-box img{width:123px; height:40px; float:left;}
+#txt{ font-size:16px; color:#959595; font-family:"宋体"; width:468px; height:38px; border:#FFF 1px solid; float:left; line-height:38px;}
+.bigbox{ width:240px; height:30px; background:url(../images/5.png); margin:35px auto;}
+.bigbox a{ font-size:16px; font-family:"宋体"; color:#FFF; height:30px; line-height:30px; margin:0 25px;}
+.bigbox a:hover{ color:#F00;}

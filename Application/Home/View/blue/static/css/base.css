@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+img{ border:none;}
+li{ list-style:none;}
+a{ text-decoration:none;}
+i{ font-style:normal;}
+body{ font-size:12px;font-family:"微软雅黑";}
+i,em{ font-style:normal;}
+
+
+/* 头部 */
+.bg{ width:1200px; height:109px;margin:0 auto;}
+.logo{ width:286px; height:109px; float:left; display: table-cell;        vertical-align: middle;}
+.logo img{max-height: 109px;margin: auto; max-width: 286px;padding-top: 10px;}
+.tel{ width:914px; height:109px; float:right;  position:relative;}
+.tel h2{ color:#014fb1; font-size:24px;font-family:"Tekton Pro";margin-top:35px; position:absolute; top:0; right:20px;}
+.langue{float: right;
+    margin-top: 10px;
+    font-size: 14px;
+    position: absolute;
+    right: 16px;}
+.langue a{color: #014fb1; padding: 5px;}
+a.active{color: red;}
+
+
+/* 导航 */
+.nav{ width:100%; height:50px;  background:url(../images/nav-bg.jpg) repeat-x; position:relative;}
+.nav-bg{ margin:0 auto; width:1200px; height:px;}
+.nav ul{ margin-left:20px;}
+.nav ul li{ float:left; height:50px; width:80px; line-height:50px; margin-right:58px;}
+.nav ul li a{color:#ffffff;font-size:18px; display:block; height:46px; text-align:center;}
+.nav ul li a:hover{ border-bottom: #ff8a07 4px solid;}
+.nav ul li.on{border-bottom: #ff8a07 4px solid;height:46px;}
+#searchbox{ width:185px; height:26px;position:absolute; right:0; top:13px; margin-right:90px; line-height:26px;  }
+#wenben{color:#014fb1; font-family:"宋体"; width:185px; height:26px;border-radius:15px;-ms-border-radius:15px;-moz-border-radius:15px;-o-border-radius:15px;-webkit-border-radius:15px; border:none; position:relative;padding-left:10px; line-height:26px; }
+#searchbox img{ width:20px; height:19px; float:right; position:absolute; top:5px; right:5px;}
+
+.main-l{ width:250px; height:644px; float:left; margin-right:40px;}
+
+.list{height:auto; width:250px; margin-top:20px;}
+.list ul li a:hover{ background-color: grey;}
+.list ul li{ width:250px; height:41px;background-color: blue; margin-top:5px;}
+.list ul li.on1 { background-color: grey; }
+.list ul li a {
+    color: #FFF;
+    height: 41px;
+    width: 215px;
+    line-height: 41px;
+    padding-left: 25px;
+    display: block;
+}
+
+/* banner */
+.banner{ width:100%; overflow:hidden; position:relative;}
+.banner img{ width:100%;}
+
+
+
+/*侧导航*/
+.w1200{ width:1200px; height:10px; margin:0 auto; position:relative;}
+.menu{height:208px; width:224px; background:url(../images/ce-nav.jpg) repeat-x; font-size:18px; margin:0 auto;position:absolute; top:10px; right:965px; }
+.menu i{font-size:100px; font-family:"Times New Roman"; color:#fefffd; padding-left:30px;}
+.menu em{ color:#FFF; position:absolute; top:47px; right:40px;}.main{ width:1200px; height:auto; margin:0 auto; overflow:hidden;}
+
+
+/*内容五*/
+.main04{ width:1200px; height:152px; margin:0 auto; background:#383838; position:absolute; top:-100px;z-index:3; left:50%; margin-left:-600px;}
+.main04 ul{margin-left:150px;}
+.main04 ul li{ float:left; width:82px; height:65px; text-align:center; line-height:15px;margin-left:150px;}
+.main04 ul li a{ display:block;width:82px; height:65px; margin-top:30px; font-size:14px; color:#FFF;}
+.main04 ul li i{ color:#832a2a; font-size:12px; font-family:"Times New Roman";}
+
+
+/*内容六*/
+.dibu{ width:100%; height:170px; background:url(../images/foot-bg.jpg) repeat-x; position:relative;  z-index:1;top:100px;}
+.dibu-box{ width:1200px; height:170px; margin:0 auto;}
+.dibu-l{ width:152px; height:170px; float:left;}
+.dibu-m{ width:896px; height:170px; float:left;font-family:"宋体"; color:#FFF; text-align:center; }
+.address{ font-size:14px; margin-top:100px;}
+.font{ font-size:12px;}
+.dibu-r{ width:152px; height:70px; float:right; font-family:"宋体"; color:#FFF; line-height:20px; padding-top:100px; }
+.dibu-r i{ margin-left:70px;}
+.dibu-r em{ margin-left:70px;}
+
+.TP img{
+    width: 250px;  
+}
+
+.number{width:250px; height:115px;background:url(../images/tel2.jpg) no-repeat;}
+.number h2 {
+    color: #262626;
+    font-size: 17px;
+    font-family: "Tahoma";
+    width: 240px;
+    height: 50px;
+    line-height: 117px;
+    text-align: right;
+}
+.e-mail{ width:250px; height:115px; background:url(../images/e-mail.jpg) no-repeat;}
+.e-mail h2 {
+    color: #262626;
+    font-size: 15px;
+    font-family: "Tahoma";
+    width: 240px;
+    height: 50px;
+    line-height: 85px;
+    text-align: right;
+}

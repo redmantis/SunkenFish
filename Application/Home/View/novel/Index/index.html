@@ -1,0 +1,81 @@
+<extend name="Public:base" />
+<block name="body">
+	<div id="main">
+		<div id="hotcontent">
+			<div class="l">
+                            <foreach name="bl" item="v" key="key"> 			
+				<div class="item">
+					<div class="image">
+						<a href="{$v.rewriteurl}" title="{$v.title}"><img src="{$v.remotethumb}" alt="{$v.title}" width="120" height="150" /></a>
+					</div>
+					<dl>
+						<dt>
+							<span>{$v.author}</span>
+							<a href="{$v.rewriteurl}">{$v.title}</a>
+						</dt>
+						<dd>
+							{$v.info}...
+						</dd>
+					</dl>
+					<div class="clear"></div>
+				</div>
+				</foreach>
+			</div>
+			<div class="r">
+				<h2>
+					经典小说
+				</h2>
+				<ul>
+					<foreach name="reclist" item="v">
+					<li>
+						<span class="s1">[{$v.catename_short}]</span>
+						<span class="s2"><a href="{$v.rewriteurl}" title="{$v.title}">{$v.title}</a></span>
+						<span class="s5">{$v.author}</span>
+					</li>
+					</foreach>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div style="height:15px;"></div>
+		<div id="newscontent">
+			<div class="l">
+				<h2>
+					最近更新小说列表
+				</h2>
+				<ul>
+					<foreach name="updatelist" item="v">
+					<li>
+						<span class="s1">[<a href="{$v['cateurl']}" title="{$v['catename']}">{$v['catename']}</a>]</span>
+						<span class="s2"><a href="{$v['rewriteurl']}" title="{$v['title']}">{$v['title']}</a></span>
+						<span class="s3"><a href="{$v['lastchapterurl']}" title="{$v['title']}最新章节" target="_blank">{$v['lastchapter']}</a></span>
+						<span class="s4">{$v['author']}</span>
+						<span class="s5">{$v.updatetime|date="Y-m-d H:i:s",###}</span>
+					</li>
+					</foreach>
+				</ul>
+			</div>
+			<div class="r">
+				<h2>
+					最新入库小说
+				</h2>
+				<ul>
+					<assign name="i" value="0" />
+					<foreach name="newestlist" item="v">
+					<assign name="i" value="$i+1" />
+					<li>
+						<span class="s1">[<a href="{$v['cateurl']}" title="{$v['catename']}">{$v['catename_short']}</a>]</span>
+						<span class="s2"><a href="{$v['rewriteurl']}" title="{$v['title']}">{$v['title']}</a></span>
+						<span class="s5">{$v['author']}</span>
+					</li>
+					</foreach>
+				</ul>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+	</div>
+	<div id="firendlink">
+		友情连接：<foreach name="TDK.flink" item="v3"><a href="{$v3['url']}" target="_blank">{$v3['name']}</a></foreach>
+	</div>
+</block>

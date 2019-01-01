@@ -1,0 +1,131 @@
+<extend name="Public:base" />
+<block name="css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak={$bconfig.lbs_frontak}" ></script>
+    <link type="text/css" href="__STATIC__/css/contact.css?t={:MUYUVERSION}" rel="stylesheet" />
+</block>
+<block name="body">
+    <!--内容一-->
+    <div class="w1200"><div class="menu">
+            <!--            <i>A</i><em>关于我们<br />BOUT US</em>-->
+        </div></div>
+    <div class="main">
+        <!--内容一 左边-->
+        <include file="Public/about" />
+        <!--内容一 右边-->
+        <div class="main-r">
+            <div class="head">
+                <span> {:showTagbyValue('contact')}</span><i> {:showTagbyValue('contact','shorttitle')}</i>
+                <em>{:showTagbyValue('currentlocation')}&gt;&gt;<a href="#"> {:showTagbyValue('contact')}</a></em>    
+            </div>
+            <div class="map"> 
+                <!--百度地图容器-->
+                <div style="width:906px;height:380px;border:#ccc solid 1px;" id="allmap"></div>
+            </div>
+            <div class="meassage">
+                <div class="ZB">
+                    <h2>{:showTagbyValue('contact')}</h2>
+                    <form class="layui-form">
+                        <table cellpadding="0" cellspacing="0" >
+                            <tr><td>{:showTagbyValue('truename')}</td><td>
+                                    <input type="text" name='fromname' class="user" lay-verify="required" lay-verify-msg="{:showTagbyValue('truename')} {:showTagbyValue('verify_required')}" /></td></tr>
+                            <tr><td>{:showTagbyValue('company-mail')}</td><td>
+                                    <input type="text" class="user" name='from'  lay-verify="required" lay-verify-msg="{:showTagbyValue('company-mail')} {:showTagbyValue('verify_required')}" /></td></tr>
+                            <tr><td valign="top">{:showTagbyValue('message')}</td><td>
+                                    <textarea cols="40" rows="7" class="liuyan" name='message' lay-verify="required" lay-verify-msg="{:showTagbyValue('message')} {:showTagbyValue('verify_required')}" ></textarea></td></tr>
+                            <tr><td></td>
+                                <td><input type="button" value="{:showTagbyMark('Backstage_Submit')}"  lay-submit="" lay-filter="submit1" class="TJ"/> </td></tr>
+                        </table>
+                        <input type="hidden" name="action" value="leaving_message" />
+                        <input type="hidden" name="to" value="{$bconfig.web_mail}" />  
+                    </form>
+                </div>
+                <div class="YB">
+                    <h2>{$bconfig.company-name}</h2>
+                    <p>{:showTagbyValue('company-address')}：&nbsp;&nbsp;&nbsp;&nbsp;{$bconfig.web_addr}<br />
+                        {:showTagbyValue('company-mail')}：&nbsp;&nbsp;&nbsp;&nbsp;{$bconfig.web_mail}<br />
+                        {:showTagbyValue('company-tel')}：&nbsp;&nbsp;&nbsp;&nbsp;{$bconfig.web_tel}<br />
+                        {:showTagbyValue('company-fax')}：&nbsp;&nbsp;&nbsp;&nbsp;{$bconfig.web_fax}<br />
+                        <!--                        {:showTagbyValue('Prev_Page')}：&nbsp;&nbsp;&nbsp;&nbsp;410000</p>-->
+                    <div class="tupian">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     </block>
+    <block name="footer">     
+        <script type="text/javascript">
+            layui.config({
+                base: baselayui
+            }).use(['form', 'jquery','lay_common'], function () {
+                var $ = layui.jquery
+                , common = layui.lay_common
+                , form = layui.form;
+
+                var map = new BMap.Map("allmap");
+                var mapType1 = new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP]});
+                var mapType2 = new BMap.MapTypeControl({anchor: BMAP_ANCHOR_TOP_LEFT});
+
+                var overView = new BMap.OverviewMapControl();
+                var overViewOpen = new BMap.OverviewMapControl({isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT});
+                //添加地图类型和缩略图
+
+                map.addControl(mapType1);          //2D图，卫星图
+                map.addControl(mapType2);          //左上角，默认地图控件
+
+                map.addControl(overView);          //添加默认缩略地图控件
+                map.addControl(overViewOpen);      //右下角，打开
+                
+                  var marktype = {
+            // 指定Marker的icon属性为Symbol
+            icon: new BMap.Symbol(BMap_Symbol_SHAPE_POINT, {
+                scale: 1.2, //图标缩放大小
+                fillColor: "green", //填充颜色
+                fillOpacity: 0.8//填充透明度
+            })};
+
+                var point = new BMap.Point(120.435025, 30.252255);
+                var mk = new BMap.Marker(point,marktype);
+                map.addOverlay(mk);
+                mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画  
+                
+                map.centerAndZoom(point, 16);
+                map.enableScrollWheelZoom();
+//                map.enableInertialDragging();
+//                map.enableContinuousZoom();
+ //            var geolocation = new BMap.Geolocation();
+ //            geolocation.getCurrentPosition(function (r) {
+ //                if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+ //                    map.centerAndZoom(r.address.city, 12);
+ //                }
+ //            }, {enableHighAccuracy: true});  //浏览器定位
+                
+
+                //  添加定位控件
+                var geolocationControl = new BMap.GeolocationControl();
+                geolocationControl.addEventListener("locationSuccess", function (e) {});
+                geolocationControl.addEventListener("locationError", function (e) {});
+                map.addControl(geolocationControl);
+
+                size = new BMap.Size(10, 40);
+                map.addControl(new BMap.CityListControl({
+                    anchor: BMAP_ANCHOR_TOP_LEFT,
+                    offset: size,
+                }));
+
+                map.addEventListener("click", function (e) {
+                    var pt = e.point;
+                    markmap(pt);
+                });
+
+                function markmap(pt) {
+//                    map.clearOverlays();
+//                    var mk = new BMap.Marker(pt);
+//                    map.addOverlay(mk);
+                   
+                    console.log(pt);
+                }
+            });
+        </script> 
+    </block>

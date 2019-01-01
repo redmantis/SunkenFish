@@ -1,0 +1,416 @@
+<extend name="Public:base" />
+<block name="css"></block>
+<block name="body">  
+    <div class="layui-header my-header">
+        
+        <a href="{:U('Index/index')}">            
+            <div class="my-header-logo"> 
+                <img style=" width: 40px;"  src="{$sysconfig.syslogo}" alt="logo">
+                {$sysconfig.short_name}</div>
+        </a>
+        <ul class="layui-nav">
+            <li class="layui-nav-item btn-nav" >
+                <a href="javascript:;"  title="侧边伸缩">
+                    <i class="layui-icon layui-icon-shrink-right"></i>
+                </a>
+            </li>      
+            <li class="layui-nav-item">
+                <a href="{$myurl}" target="_blank" title='{:showTagbyMark("Backstage_GoHome")}'>
+                    <i class="layui-icon layui-icon-home"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item"  style="display: none;">
+                <button class="tab-handel" id="tab-handel"></button>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" title="{:showTagbyMark('Backstage_FastMenu')}">
+                    <i class="layui-icon layui-icon-component"></i>
+               </a>
+                <dl class="layui-nav-child">
+                    <foreach name="topMenu" item="v">                               
+                        <dd>
+                            <a class="tabChange" data-url="{:U($v['name'])}" data-title="{$v.title}" data-id="{$v.id}" href="#">
+                                <i class="fa {$v.menuflag}"></i> {$v.title} </a>
+                        </dd>
+                    </foreach>
+                    <dd style="display: none;">
+                        <a class="tabChange" href="#" id="hiddentabChange">
+                             <i class="fa {$v.menuflag}"></i> {$v.title} 
+                        </a>
+                    </dd>
+                </dl>
+            </li>      
+            <li class="layui-nav-item">
+                <a href="javascript:;" title="{:showTagbyMark('Backstage_SwitchLang')}">
+                    <i class="layui-icon layui-icon-flag"></i></a>
+                <dl class="layui-nav-child">
+                    <foreach name="languelist" key='k' item="v">                            
+                       <dd class="{:compare_hasin($langueinfo['curent_lang'],$k,'layui-this')}">
+                            <a  href="{:U('index/setLangue',array('l'=>$k))}">
+                                <i class="fa {$v.menuflag}"></i> {$v.title} </a>
+                        </dd>
+                    </foreach>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                     <i class="layui-icon layui-icon-website"></i>
+                    {$curentsid.sid_name}</a>
+                <dl class="layui-nav-child">
+                    <foreach name="subsidlist" key='k' item="v">                            
+                        <dd class="{:compare_hasin($k,$sid_id,'layui-this')}">
+                            <a  href="{:U('index/setcursid',array('sd'=>$k))}">
+                                <i class="fa"></i> {$v.sid_name} </a>
+                        </dd>
+                    </foreach>
+                </dl>
+            </li>
+        </ul>        
+
+        <ul class="layui-nav my-header-user-nav">
+            <li class="layui-nav-item" lay-unselect="">
+                <a lay-href="app/message/" layadmin-event="message">
+                    <i class="layui-icon layui-icon-notice"></i>
+                    <!-- 如果有新消息，则显示小圆点 -->
+                    <script type="text/html" template="" lay-url="./json/message/new.js">
+                        {{# if(d.data.newmsg){ }} 
+                        <span class="layui-badge-dot"></span>
+                        {{# } }}
+                        </script>    
+
+                    </a>
+                </li>
+                <li class="layui-nav-item layui-hide-xs" lay-unselect="">
+                    <a href="javascript:;" layadmin-event="theme">
+                        <i class="layui-icon layui-icon-theme"></i>
+                    </a>
+                </li>
+                <li class="layui-nav-item layui-hide-xs" lay-unselect="">
+                    <a href="javascript:;" layadmin-event="note">
+                        <i class="layui-icon layui-icon-note"></i>
+                    </a>
+                </li>
+
+                <li class="layui-nav-item layui-hide-xs"  lay-unselect="">
+                    <a href="javascript:;"  class="btn-reflash" title="刷新">
+                        <i class="layui-icon layui-icon-refresh-3"></i>
+                    </a>
+                </li> 
+                <li class="layui-nav-item layui-hide-xs"  lay-unselect="">
+                    <a data-url="{:U('index/cache_clear')}" class="tabChange" data-title="" data-id="welcome" href="#" title="{:showTagbyMark('Backstage_ClearCache')}">
+                        <i class="layui-icon layui-icon-delete"></i></a>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="name" href="javascript:;" title="{$manage.truename}"><img src="{$manage.head_pic|creatThumbImages=40, 40}" alt="logo">  </a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="diag_modal" data-url="{:U('admin/set')}" href="javascript:;" data-title="个人信息">个人信息</a></dd>    
+                        <dd><a class="diag_modal" data-url="{:U('admin/setpass')}" href="javascript:;" data-title="修改密码">修改密码</a></dd>                         
+                        <dd><a href="{:U('login/logout')}">退出</a></dd>
+                    </dl>
+                </li>
+                <!--                <li class="layui-nav-item"><a href="{:U('/help/index/index')}" target="_blank"><i class="layui-icon ">&#xe607;</i></a></li>               -->
+                <li class="layui-nav-item layui-hide-xs" lay-unselect="">
+                    <a href="{:U('/help/index/index')}"   target="_blank"><i class="layui-icon layui-icon-more-vertical"></i></a>
+                </li>               
+            </ul>
+        </div>
+
+        <!-- admin -->
+        <div class="layui-layout layui-layout-admin">
+            <!-- header -->            
+            <!-- side -->
+            <div class="layui-side my-side">                
+                <div class="layui-side-scroll">
+                    <ul class="layui-nav layui-nav-tree" lay-filter="side"  lay-shrink="all">
+                        <foreach name="SideMenu" item="v"> 
+                            <notempty name="v.sub">
+                                <!--                <li class="layui-nav-item layui-nav-itemed">-->
+                                <li class="layui-nav-item">
+                                    <a href="javascript:;"> <i class="layui-icon {$v.menuflag}"></i>{$v.title}</a>
+                                    <dl class="layui-nav-child">
+                                        <foreach name="v.sub" item="w">  
+                                            <dd><a href="javascript:;" href-url="{:U($w['name'],$w['pram'])}" data-id="{$w.id}" data-type="tabAdd" title="{:U($w['name'],$w['pram'])}">{$w.title}</a></dd> 
+                                        </foreach>
+                                        <dd></dd>
+                                    </dl>
+                                </li>
+                            </notempty>
+                        </foreach>
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a href="javascript:;"> </a>                   
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- body -->
+            <div class="layui-body my-body">
+                <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this firstcard" lay-id="welcome"><span>欢迎页</span></li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <iframe id="imwelcome" src="{:U('welcome')}" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer -->
+            <div class="layui-footer my-footer">
+                <div class="layui-row">
+                    <div class="layui-col-md6">
+                        <span  id="footertip"> &nbsp;</span>
+                    </div>
+                    <div class="layui-col-md6">
+                        <p><a href="" target="_blank">{$sysconfig.soft}</a>&nbsp;&nbsp;&&nbsp;&nbsp;<a href="{$sysconfig.siteurl}" target="_blank">{$sysconfig.company}</a>
+                            |
+                            {$sysconfig.copyright}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- pay -->
+        <div class="my-pay-box none">
+            <!--    <div><img src="__STATIC__/image/zfb.png" alt="支付宝"><p>支付宝</p></div>
+                <div><img src="__STATIC__/image/wx.png" alt="微信"><p>微信</p></div>-->
+        </div>    
+    </block>
+    <block name="footer">
+        <script type="text/javascript">
+            layui.config({
+                base: baselayui
+            }).use(['layer', 'element', 'util', 'jquery', 'lay_common'], function () {
+                var $ = layui.jquery,
+                        element = layui.element,
+                        layer = layui.layer,
+                        util = layui.util, //导航的hover效果、二级菜单等功能，需要依赖element模块
+                        common = layui.lay_common;
+                var side = $('.my-side');
+                var body = $('.my-body');
+                var footer = $('.my-footer');
+                var curenttabid = "iframe";
+
+                // 监听导航栏收缩
+                $('.btn-nav').on('click', function () {
+                    if (localStorage.log == 0) {
+                        localStorage.log = 1;
+                        navShow(50);
+                    } else {
+                        localStorage.log = 0;
+                        navHide(50);
+                    }
+                });
+
+                $(".btn-reflash").click(function () {
+                    $('#' + curenttabid).attr('src', $('#' + curenttabid).attr('src'));
+                });
+
+                $(".firstcard").on("click", function () {
+                    $("#iframe").attr('src', $("#iframe").attr('src'));
+                });
+
+                /**打开模态窗口*/
+                $("body").on("click", ".diag_modal", function () {
+                    var dataurl = $(this).attr("data-url");
+                    var datatitle = $(this).attr("data-title");
+                    common.cmsLayOpen(datatitle, dataurl, '750px', '400px');
+                });
+
+                // 导航栏收缩
+                function navHide(t) {
+                    var time = t ? t : 100;
+                    side.animate({'left': -200}, time);
+                    body.animate({'left': 0}, time);
+                    footer.animate({'left': 0}, time);
+                }
+
+                // 导航栏展开
+                function navShow(t) {
+                    var time = t ? t : 100;
+                    side.animate({'left': 0}, time);
+                    body.animate({'left': 200}, time);
+                    footer.animate({'left': 200}, time);
+                }
+
+                $(".tabChange").on("click", function () {
+                   
+                    var card = 'card';
+                    var url = $(this).attr("data-url");
+                    var title = $(this).attr("data-title");
+                    var id = $(this).attr('data-id');                 // ID
+                    
+                     console.log(url);
+                    var flag = getTitleId(card, id);                  // 是否有该选项卡存在
+                    // 大于0就是有该选项卡了
+                    if (flag !== '') {
+                        id = flag;
+                        if (flag === 'welcome') {
+                            $("#im" + id).attr('src', url);
+                        } else {
+                            $("#im" + id).attr('src', $("#im" + id).attr('src'));
+                        }
+                    } else {
+                        //新增
+                        element.tabAdd(card, {
+                            title: '<span>' + title + '</span>'
+                            , content: '<iframe src="' + url + '" frameborder="0" id="im' + id + '"></iframe>'
+                            , id: id
+                        });
+                    }
+                    // 切换相应的ID tab
+                    element.tabChange(card, id);
+                    curenttabid = "im" + id;
+                });
+
+                element.on('tab(card)', function (data) {
+                    curenttabid = "im" + $(this).attr('lay-id');               
+                });
+
+                $(".tab-handel").on("click", function () {
+                    var card = 'card';
+                    var url = $(this).attr("data-url");
+                    var title = $(this).attr("data-title");
+                    var xid = $(this).attr('data-id');                    // ID            
+                    var re = new RegExp("/", "g"); //定义正则表达式
+                    var id = xid.replace(re, ""); //第一个参数是正则表达式。
+                    var re = new RegExp("\.html", "g"); //定义正则表达式
+                    var id = id.replace(re, ""); //第一个参数是正则表达式。
+
+                    var flag = getTitleId(card, id);                  // 是否有该选项卡存在
+                    // 大于0就是有该选项卡了
+                    if (flag !== '') {
+                        id = flag;
+                        $("#im" + id).attr('src', $("#im" + id).attr('src'));
+                        element.tabChange(card, id); //切换到：用户管理
+                    } else {
+                        //新增
+                        element.tabAdd(card, {
+                            title: '<span>' + title + '</span>'
+                            , content: '<iframe src="' + url + '" frameborder="0" id="im' + id + '"></iframe>'
+                            , id: id
+                        });
+                    }
+                    // 切换相应的ID tab
+                    element.tabChange(card, id);
+                    curenttabid = "im" + id;
+                });
+
+                //监听导航(side)点击切换页面
+                element.on('nav(side)', function (elem) {
+
+                    var card = 'card';                                   // 选项卡对象
+                    var title = elem.text();                              // 导航栏text
+                    var src = elem.attr('href-url');      // 导航栏跳转URL  
+                    if (typeof src === typeof undefined) {
+                        return;
+                    }
+                    var id = elem.attr('data-id');                     // ID
+                    var flag = getTitleId(card, id);                  // 是否有该选项卡存在
+                    // 大于0就是有该选项卡了
+                    if (flag !== '') {
+                        id = flag;
+                        $("#im" + id).attr('src', $("#im" + id).attr('src'));//点击时刷新页面
+                    } else {
+                        //新增
+                        element.tabAdd(card, {
+                            title: '<span>' + title + '</span>'
+                            , content: '<iframe src="' + src + '" frameborder="0" id="im' + id + '"></iframe>'
+                            , id: id
+                        });
+                    }
+                    // 切换相应的ID tab
+                    element.tabChange(card, id);
+                    curenttabid = "im" + id;
+                    layer.closeAll();
+                });
+
+                // 根据导航栏text获取lay-id
+                function getTitleId(card, cardid) {
+                    var id = "";
+                    $(document).find(".layui-tab[lay-filter=" + card + "] ul li").each(function () {
+                        if (cardid === $(this).attr('lay-id')) {
+                            id = $(this).attr('lay-id');
+                        }
+                    });
+                    return id;
+                }
+
+                // 监听控制content高度
+                function init() {
+                    // 起始判断收缩还是展开
+                    if (localStorage.log == 0) {
+                        navHide(1);
+                    } else {
+                        navShow(1);
+                    }
+                    // 选项卡高度
+                    cardTitleHeight = $(document).find(".layui-tab[lay-filter='card'] ul.layui-tab-title").height();
+                    // 需要减去的高度
+                    height = $(window).height() - $('.layui-header').height() - cardTitleHeight - $('.layui-footer').height();
+                    // 设置高度
+                    $(document).find(".layui-tab[lay-filter='card'] div.layui-tab-content").height(height - 2);
+                }
+
+                // 自适应
+                $(window).on('resize', function () {
+                    if ($(this).width() > 1024) {
+                        if (localStorage.log == 0) {
+                            localStorage.log = 1;
+                            navShow();
+                        }
+                    } else {
+                        if (localStorage.log == 1) {
+                            localStorage.log = 0;
+                            navHide();
+                        }
+                    }
+                    init();
+                });
+
+                // 初始化
+                init();
+
+                // 打赏
+                $('.pay').on('click', function () {
+                    layer.open({
+                        type: 1,
+                        title: false, // 标题不显示
+                        closeBtn: false, // 关闭按钮不显示
+                        shadeClose: true, // 点击遮罩关闭
+                        area: ['auto', 'auto'], // 宽高
+                        content: $('.my-pay-box')   // 弹出内容
+                    });
+                })
+
+                // 分辨率小于1024  使用内部工具组件
+                if ($(window).width() < 1024) {
+                    util.fixbar({
+                        bar1: '&#xe602;'
+                        , css: {left: 10, bottom: 54}
+                        , click: function (type) {
+                            if (type === 'bar1') {
+                                //iframe层
+                                layer.open({
+                                    type: 1, // 类型
+                                    title: false, // 标题
+                                    offset: 'l', // 定位 左边
+                                    closeBtn: 0, // 关闭按钮
+                                    anim: 0, // 动画
+                                    shadeClose: true, // 点击遮罩关闭
+                                    shade: 0.8, // 半透明
+                                    area: ['150px', '100%'], // 区域
+                                    skin: 'my-mobile', // 样式
+                                    content: $('body .my-side').html() // 内容
+                                });
+                            }
+                            element.init();
+                        }
+                    });
+                    localStorage.log = 1;
+                    navHide(1);
+                }
+            });
+        </script>
+    </block>

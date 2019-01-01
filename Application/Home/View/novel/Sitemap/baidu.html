@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="{$comset.http}www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>{$sitemapdata.mapinfo.weburl}</loc>
+		<lastmod>{$sitemapdata.mapinfo.dateline}</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<foreach name="sitemapdata.mapinfo.maplist" key="key" item="vo">
+	<url>
+		<loc>{$vo.rewriteurl}</loc>
+		<lastmod>{$sitemapdata.mapinfo.dateline}</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	</foreach>
+</urlset>

@@ -1,0 +1,32 @@
+<extend name="Public:base" />
+<block name="css">
+    <link type="text/css" href="__STATIC__/css/product-detail.css?t={:MUYUVERSION}" rel="stylesheet" />
+</block>
+<block name="body">
+    <!--内容一-->
+    <div class="w1200"><div class="menu">
+
+        </div></div>
+    <div class="main">
+        <!--内容一 左边-->
+        <include file="Public/product" />
+        <!--内容一 右边-->
+        <div class="main-r">
+            <div class="head">             
+                <span>
+                    {:showTagbyValue('Product')}</span><i>
+                        {:showTagbyValue('Product','shorttitle')}
+                   </i>
+                 <em>{:showTagbyValue('currentlocation')}&gt;&gt;<a href="#">{:showTagbyValue('Product')}</a></em>  
+            </div>
+            <div class="product-detail">
+                <h2>{$model.title}</h2>
+                <div class="newcontent">
+                    {$model.content}
+                </div></div>
+
+
+        </div>
+    </div>
+</block>
+<block name="footer"></block>

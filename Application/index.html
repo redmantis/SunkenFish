@@ -1,0 +1,11 @@
+  var postdata = {usermodel: 'pcusers', action: 'get_linkman', size: 0, sid_id: sid_id, userid: userid};
+        postdata[tokenname] = request.getResponseHeader(tokenname);
+        $.ajax({
+            url: api_url,
+            type: 'post',
+            dataType: 'json',
+            data: postdata,
+            success: function (data, textStatus, request) {
+                var token = request.getResponseHeader(tokenname);
+                $("meta[name='" + tokenname + "']").attr('content', token);
+                $("input[name='" + tokenname + "']").attr('value', token);

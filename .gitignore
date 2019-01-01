@@ -1,0 +1,8 @@
+/Application/Runtime/*
+!/Application/Runtime/index.html
+!/Application/Runtime/Cache/index.html
+!/Application/Runtime/Data/index.html
+!/Application/Runtime/Logs/index.html
+!/Application/Runtime/Temp/index.html
+/nbproject/private/
+/stats/nbproject/private/

@@ -1,0 +1,84 @@
+<extend name="Public:base" />
+<block name="css">
+    <link rel="stylesheet" href="__STATIC__/css/login.css?t={:MUYUVERSION}">
+</block>
+<block name="body">
+    <div class="login-box">
+        <form class="layui-form layui-form-pane" method="get" action="">
+            <div class="layui-form-item">
+                <h3>{$sysconfig.soft}</h3>            
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">账号：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" class="layui-input" lay-verify="required|username" lay-verify-msg-required="用户名不能为空" lay-verify-msg-username="用户名不能有特殊字符" placeholder="账号" autocomplete="on" maxlength="20" value=""/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码：</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="password" class="layui-input" lay-verify="required" placeholder="密码" lay-verify-msg-required="密码不能为空" maxlength="20" value=""/>
+                </div>
+            </div>
+            <eq name='sysconfig.login_code' value='1'>
+            <div class="layui-form-item">
+                <label class="layui-form-label">验证码：</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="verify" class="layui-input" lay-verify="required" placeholder="验证码" maxlength="4"/><img id="vcodeImg" src="{:U('login/verify')}" alt="点击刷新" />
+                </div>
+            </div>
+            </eq>
+            <div class="layui-form-item">
+                <button type="reset" class="layui-btn layui-btn-danger btn-reset">重置</button>
+                <button type="button" class="layui-btn btn-submit" lay-submit="" lay-filter="sub">立即登录</button>
+            </div>
+        </form>
+    </div>  
+</block>
+<block name="footer">
+    <script type="text/javascript">
+        layui.config({
+            base: baselayui
+        }).use(['form', 'layer', 'jquery', 'lay_common'], function () {
+            var $ = layui.jquery
+                    , form = layui.form
+                    , layer = layui.layer
+                    , common = layui.lay_common;
+
+            // 提交监听
+            form.on('submit(sub)', function (data) {
+                var loginLoading = layer.msg('登陆中，请稍候', {icon: 16, time: false, shade: 0.8});
+
+                //登陆验证
+                $.ajax({
+                    url: "{:U('login/checklogin')}",
+                    type: 'post',
+                    async: false,
+                    data: data.field,
+                    success: function (data) {
+                        layer.close(loginLoading);               
+                        //登陆成功
+                        switch (data.code) {
+                            case '0':
+                                common.Login(data.msg, data.localhost);
+                                break;
+                            case '10000006':
+                                common.LoginQz('', data.sub_msg, data.localhost);
+                                break;
+                            default:
+                                common.cmsLayErrorMsg(data.sub_msg)
+                                break;
+                        }
+                    }
+                });
+                return false;
+            });
+
+            $("#vcodeImg").click(function () {
+                var verifyURL = "{:U('login/verify')}";//验证码
+                var time = new Date().getTime();
+                $(this).attr({"src": verifyURL + "/?" + time});
+            });
+        })
+    </script>
+</block>

@@ -1,0 +1,19 @@
+<a name="pro"></a>
+<div class="main-l">
+    <div class="ce-nav">
+        <div class="list"><ul>
+                <foreach name="leftmenu" item="v" key="key">
+                    <li class="{:comparenav($bcolums['viewpath'],$v['viewpath'],'on1')}"><a href="{$v|makeNavUrl}#pro" target="{$v.target}">{$v.title|clearpre}</a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <div class="contact">
+        <div class="number">
+            <h2>{$bconfig.web_hot} </h2>
+        </div>
+        <div class="e-mail">
+            <h2>{$bconfig.web_mail}</h2>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<extend name="Public:base" />
+<block name="css">
+    <link type="text/css" href="__STATIC__/css/about us.css?t={:MUYUVERSION}" rel="stylesheet" />
+</block>
+<block name="body">
+    <!--内容一-->
+    <div class="w1200"><div class="menu">
+           
+        </div></div>
+    <div class="main">
+       <!--内容一 左边-->
+  <include file="Public/about" />
+        <!--内容一 右边-->
+        <div class="main-r">
+            <div class="head">
+                <span>{$model.title}</span><i></i>
+                <em>{:showTagbyMark('currentlocation','','texttag','tagvalue')}&gt;&gt;<a href="#">{$model.title}</a></em>    
+            </div>
+            <div class="foot">
+                <h2>{$model.title}</h2>
+                {$model.content}
+                  </div>
+        </div>
+    </div>
+</block>
+<block name="footer"></block>

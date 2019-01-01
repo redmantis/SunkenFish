@@ -1,0 +1,44 @@
+<extend name="Public:base" />
+<block name="body">
+    <form method="post" action="" class="layui-form">
+        <div class="layui-tab">       
+            <ul class="layui-tab-title">
+                <foreach name="basecard" item="v" key="k"> 
+                    <li class="<eq name='k' value='base'> layui-this</eq>">{$v}          
+                    </li>
+                </foreach>
+            </ul>
+            <div class="layui-tab-content">            
+                <foreach name="basecard" item="t" key="i"> 
+                    <div class="layui-tab-item  <eq name='i' value='base'> layui-show</eq>">
+                        <foreach name="setdata" item="v" key="k"> 
+                            <eq name='i' value='$v["tableindex"]'>
+                            <div class="layui-form-item {$v.lineclass}">
+                                <label class="layui-form-label">{$v.title}</label>
+                                <div class="layui-input-block tips"  id="tipsid{$k}" tips="{$v.titledesc}">
+                                    {$v.content}           
+                                </div>
+                            </div>
+                            </eq>
+                        </foreach>   
+                    </div>
+                </foreach>  
+            </div>        
+        </div>
+    </form>
+    <script type="text/javascript" src="__EDITOR__/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__EDITOR__/ueditor.all.js"></script>
+    <script type="text/javascript">
+        //layui上传控件相关
+        var uploadimg = "{:U('/api/upload/upload')}";  //图片上传
+        var picexts = '{:getUploadExts()}';//允许的图片类型
+        var picsize = '{:getUploadSize()}';//允行上传的图片大小
+
+        var uploadfile = "{:U('/api/upload/uploadfile')}";//文件上传
+        var fileexts = '{:getUploadExts("file")}';//允许的上传文件类型
+        var filesize = '{:getUploadSize("file")}';//允行上传的上传文件大小
+        var delfile = "{:U('/api/upload/del')}";       //删除文件 
+    </script>
+    <script src="__STATIC__/js/tablecard.js?t={:MUYUVERSION}" type="text/javascript"></script>
+</block>

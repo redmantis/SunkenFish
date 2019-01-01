@@ -1,0 +1,155 @@
+<extend name="Public:base" />
+<block name="css">
+    <style>
+        .center{text-align: center;}
+        .shortcut{
+            padding-top: 5px;
+            width: 100%;
+            height: 60px;
+            /*line-height: 60px;*/
+            text-align: center;
+            border-radius: 2px;         
+            background-color: #F8F8F8;}
+        .shortcut i{      
+
+            font-size: 30px;
+            color: #333;
+        }
+
+        .shortcut span {          
+            display: block;
+            color: #666;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+    </style>
+</block>
+<block name="body">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md8">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md6">
+                        <div class="layui-card">
+                            <div class="layui-card-header">快捷方式</div>
+                            <div class="layui-card-body"> 
+                                <div class="layui-row layui-col-space10">
+                                    <div class="layui-col-md6 center">
+                                        <a class="tabChange" data-url="/admin/Siteset/index/menuid/34.html" data-title="网站参数" data-id="34" href="#">
+                                            <div class="shortcut">
+                                                <i class="layui-icon layui-icon-flag"></i>
+                                                <span>管理网站LOGO</span>
+
+                                            </div>
+                                        </a>                                                                             
+                                    </div>                                         
+                                    <div class="layui-col-md6 center">
+                                        <a class="diag_modal" data-url="{:U('admin/set')}" href="javascript:;" data-title="个人信息" >
+                                            <div class="shortcut">
+                                                <i class="layui-icon layui-icon-username "></i>
+                                                <span>个人信息</span>                                            
+                                            </div>
+                                        </a>                                                                             
+                                    </div>
+                                    <div class="layui-col-md6 center">
+                                        <a class="diag_modal" data-url="{:U('admin/setpass')}" href="javascript:;" data-title="修改密码" >
+                                            <div class="shortcut">
+                                                <i class="layui-icon layui-icon-password "></i>
+                                                <span>修改密码</span>                                            
+                                            </div>
+                                        </a>                                                                             
+                                    </div>
+                                    <div class="layui-col-md6 center">
+                                        <a href="{:U('login/logout')}" target="top" >
+                                            <div class="shortcut">
+                                                <i class="layui-icon layui-icon-auz "></i>
+                                                <span>退出</span>                                            
+                                            </div>
+                                        </a>                                                                             
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="layui-col-md6">
+                        <div class="layui-card">
+                            <div class="layui-card-header">版本信息</div>
+                            <div class="layui-card-body layui-text">
+                                <table class="layui-table">
+                                    <colgroup>
+                                        <col width="100">
+                                        <col>
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <td>当前版本</td>
+                                            <td>{$sysconfig.version}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>基于框架</td>
+                                            <td>
+                                                ThinkPHP3.2 LAYUI
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>主要特色</td>
+                                            <td>零门槛 / 响应式 / 清爽 / 极简</td>
+                                        </tr>                                  
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="layui-col-md4">
+
+            </div>
+
+        </div>
+    </div>
+</block>
+<block name="footer">
+    <script>
+        layui.config({
+                base: baselayui
+            }).use(['carousel', 'layer', 'element', 'util', 'jquery', 'lay_common'], function () {
+            var carousel = layui.carousel;
+            var $ = layui.jquery,
+                    element = layui.element,
+                    layer = layui.layer,
+                    util = layui.util,
+                    common = layui.lay_common;
+            //建造实例
+            carousel.render({
+                elem: '.short-opt'
+                , indicator: 'inside'
+                , arrow: 'none' //始终显示箭头
+                        //,anim: 'updown' //切换动画方式
+            });
+
+            $(".tabChange").on("click", function () {
+                var obj = $("#hiddentabChange", window.parent.document);
+                var mydata = $(this).data();
+                $(obj).attr('data-url', mydata.url);
+                $(obj).attr("data-title", mydata.title);
+                $(obj).attr("data-id", mydata.id);
+                parent.$(obj, parent.doucment).trigger('click');
+            });
+            
+            /**打开模态窗口*/
+            $("body").on("click", ".diag_modal", function () {
+                var dataurl = $(this).attr("data-url");
+                var datatitle = $(this).attr("data-title");
+                common.cmsLayOpen(datatitle, dataurl, '750px', '400px');
+            });
+        });
+
+    </script>
+</block>

@@ -1,0 +1,120 @@
+<extend name="Public:base" />
+<block name="css"> 
+    <style>
+        .newlist{
+            padding: 2rem;
+            line-height: 200%;
+        }
+        .newlist h2>small{
+           float: right;            
+        }
+        
+        .newlist p{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;            
+        }
+        
+        .newlist-more{
+            padding: 2rem;
+            line-height: 200%;
+            text-align: center;
+        }
+        
+        .tm-footer {
+            margin-top: 3rem;
+        }
+    </style>
+</block>
+<block name="body"> 
+    <div class="container-fluid">
+        <div id="top">
+            <include file="Public/nav" />    
+        </div> 
+    </div>   
+
+    <div class="container-fluid">
+        <div class="row tm-section-small-pad">
+            <section class="tm-color-black">
+                <include file="Public/mbx" /> 
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                    <div class="tm-plan-boxes-container">
+                        <div class="table-responsive" id="articlecontent">
+                        </div> 
+                    </div>
+                </div>
+
+            </section>
+
+        </div> 
+    </div>
+    <div class=" tm-bg-img-header2">
+        <div class="container-fluid">
+            <include file="Public/footer" />  
+        </div>
+    </div>
+</block>        
+<block name="footer">
+    <!--<script src="__PUBLIC__/frame/angular/angular.min.js"></script>-->  
+    <script src="__PUBLIC__/frame/layui/layui.js" type="text/javascript"></script>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $(".tm-navbar-row").addClass("sticky");
+            });
+    </script>    
+    
+    <textarea title="列表模版" id="lay_tpl" style="display:none;"> 
+    {{#  
+      var countindex = function(index){
+        return index%2 +1;
+      }; 
+    }}
+
+    {{# layui.each(d.data, function(index, item){ }}  
+      <div class="tm-bg-gold-{{ countindex(index) }} tm-color-black newlist"> 
+         
+          <h2> {{ item.page_title }}  <small><a class="btn btn-info btn-sm" target="_blank" href="/news/detail/id/{{ item.id }}?{:C('LANGUE_TAG')}={$curent_langue}">{:showTagbyValue('Read_More','','texttag')}</a></small></h2>
+            <p class="lead">{{ item.summary }}</p>       
+        
+     </div>
+     {{# }); }}
+    </textarea>
+    
+    <script>
+      layui.use(['flow', 'laytpl'], function () {
+      var $ = layui.jquery
+              , laytpl = layui.laytpl
+              , flow = layui.flow;
+      var sdata = {$schdata};
+      sdata[tokenname] = $("meta[name='" + tokenname + "']").attr('content');
+      sdata['selectlangue'] = '{$curent_langue}';
+      flow.load({
+      elem: '#articlecontent' //指定列表容器
+              , isLazyimg: true
+              , end:"<div class=\" tm-bg-gray-1 tm-color-black newlist-more\">{:showTagbyValue('no-more','','texttag')}</div>"
+              , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页      
+              sdata["p"] = page;
+              $.ajax({
+              url: api_url,
+                      type: 'post',
+                      dataType: 'json',
+                      data: sdata,
+                      success: function (data, textStatus, request) {
+                      var token = request.getResponseHeader(tokenname);
+                      $("meta[name='" + tokenname + "']").attr('content', token);
+                      $("input[name='" + tokenname + "']").attr('value', token);
+                      sdata[tokenname] = token;
+                                          
+                      var html = laytpl(lay_tpl.value).render({
+                      data: data.list
+                      });
+                      var ttpage = Math.ceil(data.count / sdata.size);
+                      next(html, page < ttpage);
+                      },
+              });
+              }
+      });
+      });
+    </script>
+</block>

@@ -1,0 +1,14 @@
+<script>login();</script>
+<div class="header">
+	<div class="header_logo">
+		<a href="{$bconfig.web_site}" title="{$bconfig.sitelogo}">{$bconfig.web_title}</a>
+	</div>
+	<script></script>
+</div>
+<div class="nav">
+    <ul>		
+        <foreach name="pc_site_nav" item="v" key='k'>
+            <li ><a class="{:comparenav($catid,$v['groupmark'],'active')}" href="{$v.viewpath}" target="{$v.target}" title="{$v.title}" >{$v.title}</a></li>
+        </foreach>
+    </ul>
+</div>

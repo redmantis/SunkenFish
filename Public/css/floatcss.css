@@ -1,0 +1,13 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017-1-5, 10:39:30
+    Author     : adminsys
+*/
+
+.floatufo{position:absolute;z-index:1000000000;top:100px;}
+.floatufo a.btn_close{position:absolute;top:0;right:0;font-weight:bold;color:#333;z-index:10011;font-size: 20px; cursor: pointer;}
+.floatufo img{max-width:100%;}

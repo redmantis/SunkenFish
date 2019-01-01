@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+/* banner */
+.banner1{ width:100%; height:554px; overflow:hidden; position:relative;}
+.banner1 img{ width:1920; height:554; position:absolute; left:50%; margin-left:-960px; position:relative;}
+
+
+/*侧导航*//*内容一*/
+.main{ width:1200px; height:auto; margin:0 auto; overflow:hidden;}
+.TP{ width:250px; height:300px; margin-top:55px;}
+.ce-nav{ height:auto; width:250px; font-size:18px; position:relative;}
+.list{height:auto; width:250px; margin-top:20px;}
+.contact{ width:250px; height:115px; margin:50px auto 0;}
+.main-r{ width:910px; height:auto; float:right;}
+.head{ width:910px; height:97px;border-bottom:2px solid #014fb1;}
+.head span{font-size:24px;color:#000; margin:0 5px; height:97px; line-height:130px;} 
+.head i{font-size:14px;color:#000;}
+.head em{ float:right;height:97px; line-height:140px; font-family:"宋体"; }
+.head em a{ color:#000; margin-left:5px;}
+.head em a:hover{ color:#09F;}       
+.product{ width:910px; height:auto; overflow:hidden; position:relative; margin-bottom:10px;}
+.product ul li{ float:left; background:url(../images/QY-BG.jpg); width:225px; height:250px; margin-top:10px;position:relative; margin-left:2px;}
+.product ul li img{ width:205px; height:200px; margin-left:10px; margin-top:10px;}
+.product ul li:hover .click{ display:block;}
+.product h2{ font-size:24px; color:#262626; text-align:center; width:205px;}
+.click{ width:225px; height:250px; position:absolute; background:#3b76c2; top:0; opacity:0.9; filter:alpha(opacity=90);line-height:30px; display:none;}
+.click i{  font-family:"汉仪细圆简"; font-size:20px; color:#FFF; width:225px; height:60px; position:absolute; top:90px; left:40px; background:url(../images/click.png) no-repeat 0 15px; padding-left:45px;}
+.next{ width:910px; height:25px; text-align:right;}
+.next a{ font-size:12px;font-family:"宋体"; color:#000; padding-left:5px;}
+.next i{ border:1px #000000 solid; margin-left:3px; background:#ffffff;}
+.next i a{ margin-right:5px;} 
+.next i:hover{ background:#014fb1; } 
+.next i.DQ{background:#014fb1;}
+
+

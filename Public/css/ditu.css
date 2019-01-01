@@ -1,0 +1,121 @@
+#pageHeader{
+    background:rgb(249, 249, 249);
+    border-bottom:1px solid #EDEDED;
+}
+#pageMiddle{
+    background:rgb(253, 253, 253);
+    border-bottom:1px solid #EDEDED;
+    margin-bottom:5px;
+    padding:15px 0;
+}
+#filterBox{
+    clear: both;
+}
+#filterBox li a.activate{
+    color:red;
+    text-decoration:none;
+    cursor:default;
+}
+#mapBox{
+    width:100%;
+    height:500px;
+    position:relative;
+}
+#map{
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:400px;
+}
+#mapPanel{
+    position:absolute;
+    width:400px;
+    top:0;
+    bottom:0;
+    right:0;
+    height:100%;
+}
+#mapListWrap{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:41px;
+    overflow:auto;
+}
+img{
+    max-width:none;
+}
+h1{
+    float:left;
+    font-size:24px;
+    font-family:'微软雅黑';
+    color:red;
+}
+h2{
+    float:left;
+    margin-left:20px;
+    font-size:16px;
+    font-weight:normal;
+}
+.dl-horizontal dt{
+    width:50px;
+}
+.dl-horizontal dd{
+    margin-left:50px;
+}
+.dl-horizontal{
+    margin:0px;
+}
+#chgMode{
+    margin-right:10px;
+}
+#toggleBtn{
+    margin-right:10px;
+}
+.BMapLib_nav_tab_content input{
+    padding:0px;
+    margin:0;
+}
+#selectedValue{
+    width:300px;
+    padding-left:5px;
+}
+#selectedValue .span1{
+    white-space: nowrap;
+    padding:0 5px;
+    width:auto;
+    text-align:center;
+    background:#e1e1e1;
+    height:30px;
+    line-height:30px;
+    border-radius:3px;
+}
+#selectedValue .icon-remove{
+    margin-left:5px;
+    cursor:pointer;
+}
+#listBox{
+    padding-bottom:20px;
+}
+#listWrap{
+    border-color:#DDDDDD;
+    border-style:solid;
+    border-width:0px 1px 1px 1px;
+}
+#listWrap table{
+    margin-bottom:0px;
+}
+
+#mapPager {
+    position:absolute;
+    margin:0px;
+    bottom:0px;
+    left:50px;
+}
+
+.inline li{
+    float: left;
+}

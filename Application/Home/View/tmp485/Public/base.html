@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{$curent_langue}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{$site_title}</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <meta name="keywords" content="{$site_keyword}" />
+        <link rel="stylesheet" href="__STATIC__/font-awesome-4.5.0/css/font-awesome.min.css">                <!-- Font Awesome -->
+        <link rel="stylesheet" href="__STATIC__/css/bootstrap.min.css">                                      <!-- Bootstrap style -->
+        <link rel="stylesheet" href="__STATIC__/css/templatemo-style.css">                                   <!-- Templatemo style -->   
+        <script type="text/javascript">
+            var usermodel = "pcusers";
+            var sid_id = "{$csidid}";//
+            var userid = "{$userInfo.id}";//  
+        </script>
+        <style>
+            .langue{ position: fixed; right: 10px;top: 8px;z-index: 2000; }
+            .show{ display: block; }
+            .breadcrumb{ background-color: unset;}
+            .breadcrumb > li + li:before {content: "/ "; padding: 0 5px;}
+        </style>
+    <block name="css"></block>
+</head>
+<body class="tm-bg-img-content"  data-ng-app="fenleiapp" data-ng-controller="fenleictrl">
+    <div class="dropdown langue">
+        <a class="btn btn-secondary dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"> {:showTagbyMark('Backstage_SwitchLang')}
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+            <foreach name="languelist" item="v">
+                <li class="dropdown-item" role="presentation">
+                    <a role="menuitem"  class="dropdown-item" tabindex="-1" href="?{:C('LANGUE_TAG')}={$v.tagvalue}">{$v.title}</a>
+                </li>
+            </foreach>                                               
+        </ul>
+    </div>
+<block name="body"></block>
+    <!-- load JS files -->
+    
+    <script src="__PUBLIC__/js/config.js?t={:MUYUVERSION}" type="text/javascript"></script> 
+    <script src="__STATIC__/js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+    <script src="__STATIC__/js/jquery.singlePageNav.min.js"></script>      <!-- Single Page Nav (https://github.com/ChrisWojcik/single-page-nav) -->
+    <script src="__STATIC__/js/bootstrap.min.js"></script>       
+    <block name="footer"></block>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<extend name="Public:base" />
+<block name="body">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>基本树</legend>
+    </fieldset>
+
+    <ul id="demo1"></ul>
+    <script>
+        //Demo
+        layui.use(['tree', 'layer'], function () {
+            var layer = layui.layer
+                    , $ = layui.jquery;
+
+            var node;
+
+            function gettreenode() {
+                $.ajax({
+                    url: "{:U('index')}",
+                    type: 'post',
+                    async: false,
+                    success: function (data) {
+                        node = data;
+                        //console.log(data);
+                        //ajaxReturnData = data;
+                    }
+                });
+            }
+            gettreenode();
+            layui.tree({
+                elem: '#demo1' //指定元素
+                , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
+                , click: function (item) { //点击节点回调
+                    layer.msg('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
+                    console.log(item);
+                }
+                , nodes: node
+            });
+
+        });
+    </script>
+</block>

@@ -1,0 +1,74 @@
+<extend name="Public:base" />
+<block name="body">
+	<div class="dahengfu"><script type="text/javascript">list1();</script></div>
+	<div class="box_con">
+		<div class="con_top cf">
+			<div id="bdshare" class="bdsharebuttonbox">
+				<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+			</div>
+                    <a href="/" title="">首页</a> &gt;
+                        <a href="{$articledb.cateurl}" title="{$site_title}">{$articledb.catename}</a> &gt; 
+                        <a href="{$articledb.cateurl}" title="{$articledb.title}">{$articledb.title}</a>
+		</div>
+		<div id="maininfo">
+			<div id="info">
+				<div class="booktitle cf">
+					<h1>{$articledb.title}</h1>
+				</div>
+				<p>作　　者：{$articledb.author}</p>
+				<p>动　　作：加入书架,  <a href="#footer">直达底部</a></p>
+				<p>最后更新：{$articledb.updatetime|date="Y-m-d",###}</p>
+				<p>最新章节：<a href="{$articledb.lastchapterurl}" target="_blank" title="{$articledb.title}最新章节">{$articledb.lastchapter}</a></p>
+			</div>
+			<div id="intro">
+				{$articledb.info}
+			</div>
+		</div>
+		<div id="sidebar">
+			<div id="fmimg">
+				<img alt="{$articledb.title}" src="{$articledb.remotethumb}" width="120" height="150" />
+				<if condition="$articledb['is_full'] eq 0"><span class="b"></span><else /><span class="a"></span></if>
+			</div>
+		</div>
+	</div>
+	<div class="box_con">
+		<div id="list">
+			<dl>	
+				<dt>《<a href="#" title="{$articledb.title}">{$articledb.title}</a>》最新章节</b></dt>
+				<div id="newchapter">
+                                    <foreach name="newchaperlist" item="v2">
+				<dd><a href="{$v2.rewriteurl}" target="_blank" title="{$articledb.title} {$v2.title}">{$v2.title}</a></dd>
+				</foreach>
+                                </div>
+                                
+				<dt>《<a href="#" title="{$articledb.title}">{$articledb.title}</a>》章节列表</dt>
+				<foreach name="chapterdb" item="v3">
+                                    <eq name="v3.ischapter" value="1">
+                                    <dt><a href="#">{$v3.title}</a></dt>
+                                    <else />
+				<dd><a href="{$v3.rewriteurl}" target="_blank" title="{$articledb.title} {$v3.title}">{$v3.title}</a></dd>
+                                </eq>
+				</foreach>
+			</dl>
+                </div>
+                <div class="pages ">
+                    <ul>
+                        <notempty name='pagestr.up_page'>
+                            <li><a href="{$pagestr.up_page}" >« 上一页</a></li>
+                        </notempty> 
+                        <foreach name="pagestr.numlist" item="v" key="key"> 
+                            <li class=" <empty name='v.url'> current</empty>"><a href="{$v.url}" >{$v.title}</a></li>
+                        </foreach>
+                        <notempty name='pagestr.down_page'>
+                            <li><a href="{$pagestr.down_page}">下一页 »</a></li>
+                        </notempty>   
+                    </ul>
+                </div>
+        </div>
+	<div id="footer">
+		<div class="footer_link"></div>
+		<div class="footer_cont">
+			<p>《<a href="#" title="{$site_title}-{$articledb.title}">{$articledb.title}</a>》情节跌宕起伏、扣人心弦，是一本情节与文笔俱佳的{$articledb.catename}，{$site_title}转载收集<a href="#" title="{$articledb.title}最新章节">{$articledb.title}最新章节</a>。</p>			
+		</div>
+	</div>
+</block>

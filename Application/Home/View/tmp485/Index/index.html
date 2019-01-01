@@ -1,0 +1,295 @@
+<extend name="Public:base" />
+<block name="css"> 
+    <style>
+          .my-tablecell{
+                height: 8rem;
+                /*display: block;*/
+                overflow: hidden;
+                line-height: 3rem;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                overflow: hidden;
+            }
+    </style>
+</block>
+<block name="body">
+
+
+        <div class="tm-bg-img-header">
+            <div class="container-fluid">
+
+                <div id="top" class="tm-header-container">
+
+                    <!-- 1. Site Header -->
+                    <div class="row tm-site-header">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-xs-center">
+
+                            <h1 class="tm-site-title">{$bconfig.web_title}</h1>
+                            <p class="tm-site-description">{$bconfig.web_welcome}</p>
+
+                        </div>
+                    </div>
+
+                    <!-- 2. Navigation -->
+                    <include file="Public/nav" /> 
+                    <!-- row -->   
+
+                </div> <!-- .tm-header-container -->
+
+                <!-- 3. About -->
+                <div class="row" id="tm-section-1">
+
+                    <div class="container">
+                        <section class="tm-2-col-img-text">
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 tm-2-col-img">                                
+                                <i class="fa fa-5x fa-map-o"></i>
+                                <i class="fa fa-5x fa-rocket"></i>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 tm-2-col-text"  data-ng-model="about">
+                                <h2 class="tm-2-col-text-title">{{about.shorttitle}}</h2>
+                                <div class="tm-2-col-text-description" data-ng-bind-html="about.content">                                   
+                                </div>
+                            </div>
+
+                        </section>
+
+                        <section class="tm-2-col-img-text" id="tm-section-2">
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-11 col-xl-11 tm-2-col-text">
+                                <h2 class="tm-2-col-text-title">{{about2.shorttitle}}</h2>
+                                <div class="tm-2-col-text-description"  data-ng-bind-html="about2.content">                                 
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>                
+
+                </div> <!-- About section, tm-section-1 & 2 -->
+
+            </div> <!-- container-fluid -->               
+        </div> <!-- tm-bg-img-header -->
+
+        <div class="container-fluid">
+
+            <!-- Plan -->
+            <div class="row tm-section" id="tm-section-3">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-xs-center">
+                    <h2 class="tm-section-title">{{Myth.title}}</h2>
+                    <div class="tm-section-subtitle"  data-ng-bind-html="Myth.content">                      
+                    </div>    
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                    <div class="tm-plan-boxes-container">
+
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 tm-table-col" data-ng-repeat="v in newslist">
+
+                            <table class="tm-table-full-width">
+                                <thead>
+                                    <tr class="tm-bg-{{v.originaltitle}}-1">
+                                        <th class="tm-plan-table-header">{{v.page_title}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tm-bg-{{v.originaltitle}}-2"><td class="tm-plan-table-cell my-tablecell"  data-ng-bind-html="v.content|trustHtml"></td></tr>
+<!--                                    <tr class="tm-bg-{{v.originaltitle}}-3"><td class="tm-plan-table-cell">100 GB space</td></tr>
+                                    <tr class="tm-bg-{{v.originaltitle}}-1"><td class="tm-plan-table-cell">1,000 GB bandwidth</td></tr>
+                                    <tr class="tm-bg-{{v.originaltitle}}-2"><td class="tm-plan-table-cell">USD $10 per month</td></tr>-->
+                                    <tr class="tm-bg-{{v.originaltitle}}-3">
+                                        <td class="tm-plan-table-cell tm-plan-table-cell-pad-small text-xs-center">
+                                            <a href="/news/detail/id/{{ v.id }}" target="_blank" class="tm-bg{{v.originaltitle}}green-1 tm-btn-rounded tm-btn-green">{:showTagbyValue('Read_More','','texttag')}</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>  
+
+                        </div>
+
+                    </div> <!-- tm-plan-boxes-container -->
+
+                </div> <!-- .col-xs-12 -->
+
+            </div> <!-- row -->
+
+        </div> <!-- container-fluid -->        
+
+        <div class="tm-bg-img-content">
+            <div class="container-fluid">
+                <div class="row" id="tm-section-4">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-xs-center">
+
+                        <h2 class="tm-section-title">{{Contact.title}}</h2>
+                        <div class="tm-section-subtitle tm-section-subtitle-contact"  data-ng-bind-html="Contact.content">                         
+                        </div> 
+
+                    </div>
+                </div>
+            </div>    
+        </div> <!-- contact section header -->
+
+        <div class="tm-bg-img-header tm-section-contact-form">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <form action="index.html" method="post" class="tm-contact-form">                                
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm-form-group-left">
+                                <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="{:showTagbyValue('truename','','texttag')}"  required/>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 tm-form-group-right">
+                                <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="{:showTagbyValue('company-mail','','texttag')}"  required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="contact_subject" name="contact_subject" class="form-control" placeholder="{:showTagbyValue('Subject','','texttag')}"  required/>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="contact_message" name="contact_message" class="form-control" rows="6" placeholder="{:showTagbyValue('message','','texttag')}" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn tm-btn-brown-square pull-xs-right">{:showTagbyMark('Backstage_Submit','BackstageTag')}</button>                          
+                        </form>   
+                    </div> <!-- col -->
+
+                </div>
+
+                <include file="Public/footer" />                
+            </div>
+        </div> <!-- tm-section-contact-form -->        
+
+</block>        
+<block name="footer">
+    <script src="__PUBLIC__/frame/angular/angular.min.js"></script>  
+    <script>
+
+                                function prepareMenuForDesktop() {
+
+                                    var navbarHeight = 0;
+
+                                    // For screens greater than 767
+                                    if ($(window).width() > 767) {
+
+                                        // target at which the menu bar changes to sticky
+                                        var target = $("#tm-section-1").offset().top - 100;
+
+                                        // window scroll
+                                        $(window).scroll(function () {
+
+                                            if ($(this).scrollTop() > target) {
+                                                $(".tm-navbar-row").addClass("sticky");
+                                            } else {
+                                                $(".tm-navbar-row").removeClass("sticky");
+                                            }
+
+                                        });
+
+                                        navbarHeight = 56;
+                                    }
+
+                                    // Single Page Nav
+                                    $('#tmNavbar').singlePageNav({
+                                        'currentClass': "active",
+                                        offset: navbarHeight,
+                                        'filter': ':not(.external)'
+                                    });
+                                }
+
+                                $(document).ready(function () {
+
+                                    prepareMenuForDesktop();
+
+                                    // On window resize, prepare menu
+                                    $(window).resize(function () {
+                                        prepareMenuForDesktop();
+
+                                    });
+                                });
+
+    </script>    
+
+    <script>
+                var fenleiapp = angular.module('fenleiapp', []);
+                fenleiapp.controller('fenleictrl', ['$scope', '$http', '$sce', function ($scope, $http, $sce) {
+
+                        var tk = $("meta[name='" + tokenname + "']").attr('content');
+                        var data = {action: "get_newslist", size: 3, sid_id: sid_id, selectlangue: '{$curent_langue}', collist: [367]}
+                        data[tokenname] = tk;
+                        $http.post(api_url, data)
+                                .then(function (result) {
+                                    var token = result.headers(tokenname)
+                                    $("meta[name='" + tokenname + "']").attr('content', token);
+                                    $("input[name='" + tokenname + "']").attr('value', token);
+                                    $scope.newslist = result.data.list;
+                                });
+
+                        var tk = $("meta[name='" + tokenname + "']").attr('content');
+                        var data = {action: "get_siglepage", sid_id: sid_id, viewpath: 'About', selectlangue: '{$curent_langue}'}
+                        data[tokenname] = tk;
+                        $http.post(api_url, data)
+                                .then(function (result) {
+                                    var token = result.headers(tokenname)
+                                    $("meta[name='" + tokenname + "']").attr('content', token);
+                                    $("input[name='" + tokenname + "']").attr('value', token);
+                                    $scope.about = result.data.data;
+                                    $scope.about.content = $sce.trustAsHtml(result.data.data.content);
+                                });
+
+                        var tk = $("meta[name='" + tokenname + "']").attr('content');
+                        var data = {action: "get_siglepage", sid_id: sid_id, viewpath: 'about2', selectlangue: '{$curent_langue}'}
+                        data[tokenname] = tk;
+                        $http.post(api_url, data)
+                                .then(function (result) {
+                                    var token = result.headers(tokenname)
+                                    $("meta[name='" + tokenname + "']").attr('content', token);
+                                    $("input[name='" + tokenname + "']").attr('value', token);
+                                    $scope.about2 = result.data.data;
+                                    $scope.about2.content = $sce.trustAsHtml(result.data.data.content);
+                                });
+
+                        var tk = $("meta[name='" + tokenname + "']").attr('content');
+                        var data = {action: "get_siglepage", sid_id: sid_id, viewpath: 'Contactus', selectlangue: '{$curent_langue}'}
+                        data[tokenname] = tk;
+                        $http.post(api_url, data)
+                                .then(function (result) {
+                                    var token = result.headers(tokenname)
+                                    $("meta[name='" + tokenname + "']").attr('content', token);
+                                    $("input[name='" + tokenname + "']").attr('value', token);
+                                    $scope.Contact = result.data.data;
+                                    $scope.Contact.content = $sce.trustAsHtml(result.data.data.content);
+                                });
+                        var tk = $("meta[name='" + tokenname + "']").attr('content');
+                        var data = {action: "get_siglepage", sid_id: sid_id, viewpath: 'Myth', selectlangue: '{$curent_langue}'}
+                        data[tokenname] = tk;
+                        $http.post(api_url, data)
+                                .then(function (result) {
+                                    var token = result.headers(tokenname)
+                                    $("meta[name='" + tokenname + "']").attr('content', token);
+                                    $("input[name='" + tokenname + "']").attr('value', token);
+                                    $scope.Myth = result.data.data;
+                                    $scope.Myth.content = $sce.trustAsHtml(result.data.data.content);
+                                });
+
+
+                    }])
+                        .config(function ($httpProvider) {
+                            $httpProvider.defaults.transformRequest = function (obj) {
+                                var str = [];
+                                for (var p in obj) {
+                                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                }
+                                return str.join("&");
+                            };
+                            $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8';
+                        });
+                fenleiapp.filter('trustHtml', function ($sce) {
+                    return function (input) {
+                        return $sce.trustAsHtml(input);
+                    }
+                });
+    </script>
+</block>
+</block>

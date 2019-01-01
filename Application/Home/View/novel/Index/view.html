@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<title>{$TDK.title}</title>
+	<meta name="keywords" content="{$TDK.keyword}" />
+	<meta name="description" content="{$TDK.description}" />
+	<link rel="canonical" href="{$TDK.canonicalurl}"/>
+	<link rel="stylesheet" href="__PUBLIC__/biquge/css/style.css" />
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/biquge/js/header.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+	<script>var bookid = '{$TDK.oid}', hash = '{$TDK.hash}';</script>
+</head>
+<body>
+<div id="wrapper">
+	<include file="Public/header" />
+	<div class="dahengfu"><script type="text/javascript">list1();</script></div>
+	<div class="box_con">
+		<div class="con_top cf">
+			<div id="bdshare" class="bdsharebuttonbox">
+				<a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+			</div>
+			<a href="{$TDK.weburl}" title="{$TDK.webname}">{$TDK.webname}</a> &gt; <a href="{$TDK.cateurl}" title="{$TDK.webname}{$articledb.catename}">{$articledb.catename}</a> &gt; <a href="{$TDK.canonicalurl}" title="{$articledb.title}">{$articledb.title}{$TDK.webname}</a>
+		</div>
+		<div id="maininfo">
+			<div id="info">
+				<div class="booktitle cf">
+					<h1>{$articledb.title}</h1>
+				</div>
+				<p>作　　者：{$articledb.author}</p>
+				<p>动　　作：加入书架,  <a href="#footer">直达底部</a></p>
+				<p>最后更新：{$articledb.time}</p>
+				<p>最新章节：<a href="{$articledb.lastchapterurl}" target="_blank" title="{$articledb.title}最新章节">{$articledb.lastchapter}</a></p>
+			</div>
+			<div id="intro">
+				{$articledb.content}
+			</div>
+		</div>
+		<div id="sidebar">
+			<div id="fmimg">
+				<img alt="{$articledb.title}" src="{$articledb.thumb}" width="120" height="150" />
+				<if condition="$articledb['full'] eq 0"><span class="b"></span><else /><span class="a"></span></if>
+			</div>
+		</div>
+	</div>
+	<div class="box_con">
+		<div id="list">
+			<dl>	
+				<dt>《<a href="{$TDK.canonicalurl}" title="{$articledb.title}">{$articledb.title}</a>》最新章节</b><span id="loadingtip">（<img src="__PUBLIC__/biquge/images/loading.gif" />提示：正在自动抓取{$articledb.title}最新章节）</span></dt>
+				<div id="newchapter"><foreach name="newchaperlist" item="v2">
+				<dd><a href="{$v2.rewriteurl}" target="_blank" title="{$articledb.title} {$v2.title}">{$v2.title}</a></dd>
+				</foreach></div>
+				<dt>《<a href="{$TDK.canonicalurl}" title="{$articledb.title}">{$articledb.title}</a>》章节列表</dt>
+				<foreach name="chapterdb" item="v3">
+				<dd><a href="{$v3.rewriteurl}" target="_blank" title="{$articledb.title} {$v3.title}">{$v3.title}</a></dd>
+				</foreach>
+			</dl>
+		</div>
+	</div>
+	<div id="footer" name="footer">
+		<div class="footer_link"></div>
+		<div class="footer_cont">
+			<p>《<a href="{$TDK.canonicalurl}" title="{$TDK.webname}-{$articledb.title}">{$articledb.title}</a>》情节跌宕起伏、扣人心弦，是一本情节与文笔俱佳的{$articledb.catename}，{$TDK.webname}转载收集<a href="{$TDK.canonicalurl}" title="{$articledb.title}最新章节">{$articledb.title}最新章节</a>。</p>
+			<script type="text/javascript">footer();</script>{$statcode}
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/biquge/js/footer.js"></script>
+</body>
+</html>

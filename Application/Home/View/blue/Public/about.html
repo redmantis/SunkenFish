@@ -1,0 +1,27 @@
+<a name="pro"></a>
+<div class="main-l">
+            <div class="ce-nav">
+                <div class="list"><ul>
+                        <foreach name="pc_site_nav[1][son]" item="v">
+                        <li class="{:comparenav($groupmark,$v['groupmark'],'on1')}"><a href="{$v.viewpath}#pro" target="{$v.target}">{$v.title|clearpre}</a></li>
+                    </foreach>
+<!--                        <li class="on1"><a href="{:creat_url_lan('Ucent/login/forget')}">公司介绍</a></li>
+                        <li><a href="#">公司理念</a></li>
+                        <li><a href="#">公司文化</a></li>
+                        <li><a href="#">公司团队</a></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="contact">
+                <div class="number">
+                    <h2>{$bconfig.web_hot} </h2>
+                </div>
+                <div class="e-mail">
+                    <h2>{$bconfig.web_mail}</h2>
+                </div>
+                <div class="TP">
+                    <img src="__STATIC__/images/1.jpg" />
+                </div>
+            </div>
+
+        </div>

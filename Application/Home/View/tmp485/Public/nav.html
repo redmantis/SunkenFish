@@ -1,0 +1,19 @@
+<div class="row tm-navbar-row tm-navbar-row-absolute">
+    <div class="tm-navbar-container">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <nav class="navbar navbar-full">
+                <div class="text-xs-center tm-navbar-rounded" id="tmNavbar">   
+                    <ul class="nav navbar-nav">
+                        <foreach name="pc_site_nav " item="v" key='k'>
+                            <li class="nav-item">
+                                <a class="nav-link {$v.viewmod} {:comparenav($v['groupmark'],$groupmark,'active')}" href="{:creat_url_lan($v['viewpath'])}" target="{$v.target}">{$v.title}</a>
+                            </li>
+                        </foreach>
+                    </ul>
+
+                </div>                                
+
+            </nav>
+        </div> <!-- col-xs-12 -->
+    </div> <!-- tm-navbar-container -->                        
+</div>

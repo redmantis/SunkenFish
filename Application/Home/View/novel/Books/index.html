@@ -1,0 +1,62 @@
+<extend name="Public:base" />
+<block name="body">
+    <div id="main">
+        <div id="hotcontent">
+            <div class="ll">
+                <foreach name="toplist" item="v">
+                    <div class="item">
+                        <div class="image">
+                            <a href="{$v['rewriteurl']}" title="{$site_title} {$v.catename} {$v['title']}"><img src="{$v.remotethumb}" alt="{$v['title']}" width="120" height="150" /></a>
+                        </div>
+                        <dl>
+                            <dt><span>{$v['author']}</span><a href="{$v['rewriteurl']}" title="{$site_title} {$v.catename} {$v['title']}">{$v['title']}</a></dt>
+                            <dd>{$v['info']}...</dd>
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+                </foreach>
+            </div>
+        </div>
+        <div id="newscontent">
+            <div class="l">
+                <h2>{$catename}最近更新列表</h2>
+                <ul>
+                    <foreach name="dlist" item="v">
+                        <li class="item-cover">
+                            <a href="{$v.rewriteurl}" title="{$site_title} {$catename} {$v['title']}">
+                                <img src="{$v['remotethumb']}" alt="{$v['title']}" />
+                                <h3>{$v['title']}</h3>
+                            </a>
+                        </li>
+                    </foreach>
+                </ul>
+                <div class="pages ">
+                    <ul>
+                        <notempty name='pagestr.up_page'>
+                            <li><a href="{$pagestr.up_page}" >« 上一页</a></li>
+                        </notempty> 
+                        <foreach name="pagestr.numlist" item="v" key="key"> 
+                            <li class=" <empty name='v.url'> current</empty>"><a href="{$v.url}" >{$v.title}</a></li>
+                        </foreach>
+                        <notempty name='pagestr.down_page'>
+                            <li><a href="{$pagestr.down_page}">下一页 »</a></li>
+                        </notempty>   
+                    </ul>
+                </div>
+            </div>
+            <div class="r">
+                <h2>好看的{$catename}</h2>
+                <ul>
+                    <foreach name="newestlist" item="v">
+                        <li>
+                            <span class="s1">[<a href="{$v.cateurl}" title="{$site_title} {$v.catename}">{$v.catename_short}</a>]</span>
+                            <span class="s2"><a href="{$v.rewriteurl}" title="{$site_title} {$v.catename} {$v.title}" target="_blank">{$v.title}</a></span>
+                            <span class="s5">{$v.author}</span>
+                        </li>
+                    </foreach>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</block>

@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+.banner1{ width:100%; height:554px; overflow:hidden; position:relative;}
+.banner1 img{ width:1920; height:554; position:absolute; left:50%; margin-left:-960px; position:relative;}
+
+
+/*侧导航*//*内容一*/
+.main{ width:1200px; height:auto; margin:0 auto; overflow:hidden;}
+.TP{ width:250px; height:300px; margin-top:55px;}
+.ce-nav{ height:auto; width:250px; font-size:18px; position:relative;}
+
+.contact{ width:250px; height:115px; margin:50px auto 0;}
+/*.number{width:250px; height:115px;background:url(../images/tel2.jpg) no-repeat;}
+.number h2{ color:#262626; font-size:24px;font-family:"Tahoma"; width:240px; height:50px; line-height:140px; text-align:right;}
+.e-mail{ width:250px; height:115px; background:url(../images/e-mail.jpg) no-repeat;}
+.e-mail h2{color:#262626; font-size:18px;font-family:"Tahoma";width:240px; height:50px; line-height:115px; text-align:right; }*/
+.main-r{ width:910px; height:auto; float:right;}
+.head{ width:910px; height:97px;border-bottom:2px solid #014fb1;}
+.head span{font-size:24px;color:#000; margin:0 5px; height:97px; line-height:130px;} 
+.head i{font-size:14px;color:#000;}
+.head em{ float:right;height:97px; line-height:140px; font-family:"宋体"; }
+.head em a{ color:#000; margin-left:5px;}
+.head em a:hover{ color:#09F;}       
+.map{ width:906px; height:380px;}
+.meassage{ width:910px; height:345px; margin-top:20px;}
+.ZB{ width:410PX; height:343px; float:left;}
+.ZB table{font-family:"宋体";font-size:14px; width:410px; height:250px; line-height:15px; margin-top:30px;}
+.ZB table .user{border:1px solid #CCC; width:240px; height:25px; margin-bottom:10px; }
+.ZB table .liuyan{ border:1px solid #CCC;}
+.ZB table .TJ{ background:#337bd5; color:#FFF; width:88px; height:32px;font-family:"宋体";font-size:18px; border:1px solid #337bd5; margin-top:40px;}
+.ZB h2,YB h2{ font-size:18px;}
+.YB{ width:500px; height:343px; float:right; line-height:30px;}
+.YB p{ ont-family:"宋体";font-size:14px;}
+.YB a{ margin-left:20px;}
+.tupian{ width:500px; height:84px; margin-top:70px;}
+
+
+

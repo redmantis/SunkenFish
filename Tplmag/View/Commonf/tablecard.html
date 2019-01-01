@@ -1,0 +1,50 @@
+<extend name="Public:base" />
+<block name="body">
+    <form method="post" action="" class="layui-form">
+        <div class="layui-tab">       
+            <ul class="layui-tab-title">
+                <foreach name="tablecard" item="v" key="k"> 
+                    <li class="<eq name='k' value='tableCart_base'> layui-this</eq>">{$v}
+                    </li>
+                </foreach>
+            </ul>
+            <div class="layui-tab-content">            
+                <foreach name="tablecard" item="t" key="i"> 
+                    <div class="layui-tab-item  <eq name='i' value='tableCart_base'> layui-show</eq>">
+                        <foreach name="setdata" item="v" key="k"> 
+                            <eq name='i' value='$v["tableindex"]'>
+                            <div class="layui-form-item {$v.lineclass}">
+                                <label class="layui-form-label">{$v.title}</label>
+                                <div class="layui-input-block tips"  id="tipsid{$k}" tips="{$v.titledesc}">
+                                    {$v.content}           
+                                </div>
+                            </div>
+                            </eq>
+                        </foreach>   
+                    </div>
+                </foreach>  
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="hidden" name="sid_id" value="{$sid_id}" />
+                        <input type="hidden" name="id" value="{$id}" id="idddx" />
+                        <a class="layui-btn" lay-submit="" lay-filter="submit1">立即提交</a>        
+                        <button type="button" class="layui-btn layui-btn-primary form-render">重新渲染</button>
+                        {:showjumpandflash()}
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </form>
+    <script type="text/javascript" src="__EDITOR__/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__EDITOR__/ueditor.all.js"></script>
+    <script type="text/javascript">
+        //layui上传控件相关
+        var picexts = '{:getUploadExts()}';//允许的图片类型
+        var picsize = '{:getUploadSize()}';//允行上传的图片大小
+
+        var fileexts = '{:getUploadExts("file")}';//允许的上传文件类型
+        var filesize = '{:getUploadSize("file")}';//允行上传的上传文件大小
+    </script>
+    <script src="__STATIC__/js/tablecard.js?t={:MUYUVERSION}" type="text/javascript"></script>   
+</block>

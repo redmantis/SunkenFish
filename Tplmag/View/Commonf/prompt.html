@@ -1,0 +1,32 @@
+<extend name="Public:base" />
+<block name="body">
+    <form method="post" action="" class="layui-form">
+        <div class="layui-tab">       
+            <ul class="layui-tab-title">     
+                <li class="layui-this">{$subtitle}</li>          
+            </ul>
+            <div class="layui-tab-content">   
+                <div class="layui-tab-item layui-show">
+                    <foreach name="setdata" item="v" key="k">                          
+                        <div class="layui-form-item {$v.lineclass}">
+                            <label class="layui-form-label ">{$v.title}</label>
+                            <div class="layui-input-block  tips"  id="tipsid{$k}" tips="{$v.titledesc}">
+                                {$v.content}           
+                            </div>
+                        </div>                        
+                    </foreach>   
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">            
+                        <input type="hidden" name="id" value="{$id}" id="idddx" />
+                        <button class="layui-btn" lay-submit="" lay-filter="submit1">立即提交</button>
+                        <button type="button" class="layui-btn layui-btn-primary form-render">重新渲染</button>
+                        <input type="checkbox" checked atr="true" lay-skin="switch" lay-filter="jumpandflash" id="jumpandflash" lay-text="自动|手动" tips='提交后自动刷新数据'>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </form>  
+    <script src="__STATIC__/js/tablecard.js?t={:MUYUVERSION}" type="text/javascript"></script>
+</block>

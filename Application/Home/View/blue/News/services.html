@@ -1,0 +1,50 @@
+<extend name="Public:base" />
+<block name="css">
+    <link type="text/css" href="__STATIC__/css/news.css?t={:MUYUVERSION}" rel="stylesheet" />
+</block>
+<block name="body">
+    <!--侧导航-->
+    <div class="w1200"><div class="menu">
+
+        </div></div>
+    <!--内容一-->
+    <div class="main">
+        <include file="Public/about" />
+        <div class="main-r">
+            <div class="head">
+                <span>
+                    {$rootcol.title}</span><i>
+                        {$rootcol.shorttitle}
+                   </i>
+                
+                <em>{:showTagbyValue('currentlocation')}
+                    <foreach name="mbx" item="v" key="key"> 
+                        &gt;&gt;<a href="{$v.url}">{$v.title}</a>
+                    </foreach> 
+                </em>   
+                
+            </div>
+            <div class="zhong-jian">
+                 <foreach name="dlist" item="v" key="key"> 
+                <div class="you">
+                    <a href="{$v|makeurl}" class="detail">{$v.page_title}<span>{$v.posttime|date='Y-m-d',###}</span></a>             
+<!--                    <div class="news">
+                        <p>清扬是法国清扬技术中心的研究结晶,产品的附加值突破在于“维他矿物群”去屑，同时为“维他矿物群”进行了商标知识产权注册。<br />在过去10年中，以更多了解中国消费者头皮状况和问题从而为中国消费者提供更精纯的去屑产品配方。<a href="news-detail.html">更多详情</a></p>
+                        <img src="__STATIC__/images/news-2.jpg" />
+                    </div>-->
+                </div>
+                </foreach>                
+                <div class="next">
+<!--                    <a href="#">首页</a>-->
+                    <a href="{$pagestr.up_page}">{:showTagbyMark('Prev_Page')}</a>
+            <foreach name="pagestr.numlist" item="v" key="key"> 
+                  <i  class=" <empty name='v.url'> DQ</empty>" ><a href="{$v.url}">{$v.title}</a></i>
+             </foreach>                     
+                    <a href="{$pagestr.down_page}" >{:showTagbyMark('Next_Page')}</a>
+<!--                    <a href="#">最后一页</a>-->
+                </div>                
+            </div>
+        </div>
+    </div>
+    </block>
+    <block name="footer"></block>

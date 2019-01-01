@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<title>{$site_title}</title> 
+	<meta name="keywords" content="{$site_keyword}" />
+        <meta name="description" content="{$site_description}" />
+	<link rel="canonical" href="{$bconfig.web_site}"/>
+	<meta name="applicable-device" content="pc">
+	<meta http-equiv="mobile-agent" content="format=html5; url={$bconfig.web_site}">
+	<link rel="stylesheet" href="__STATIC__/css/style.css?t={:MUYUVERSION}" />
+        <meta name="baidu-site-verification" content="g3YQCOEzC7" />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/js/header.js"></script>
+        <block name="css"></block>
+</head>
+<body>
+<div id="wrapper">
+	<include file="Public/header" />
+	<block name="body"></block>
+	<include file="Public/footer" />
+</div>
+    <block name="footer"></block>
+</body>
+</html>

@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+/*大背景*/
+.banner1{ width:100%; height:554px; overflow:hidden; position:relative;}
+.banner1 img{ width:1920; height:554; position:absolute; left:50%; margin-left:-960px; position:relative;}
+
+/*侧导航*/
+.main{ width:1200px; height:auto; margin:0 auto; overflow:hidden;}
+.TP{ width:250px; height:300px; margin-top:55px;}
+.ce-nav{ height:auto; width:250px; font-size:18px; position:relative;}
+.contact{ width:250px; height:115px; margin:50px auto 0;}
+
+.main-r{ width:910px; height:auto; float:right;}
+.head{ width:910px; height:97px;border-bottom:2px solid #014fb1;}
+.head span{font-size:24px;color:#000; margin:0 5px; height:97px; line-height:130px;} 
+.head i{font-size:14px;color:#000;}
+.head em{ float:right;height:97px; line-height:140px; font-family:"宋体"; }
+.head em a{ color:#000; margin-left:5px;}
+.head em a:hover{ color:#09F;}       
+.foot{ width:910px; height:auto;padding-top:30px; overflow:hidden;}
+.foot h2{ font-size:18px; color:#ff0b0b;line-height:30px;}
+.foot h2 span{ color:#000; font-size:14px;font-family:"Times New Roman";}
+.foot p{ font-family:"宋体";color:#262626; line-height:25px; margin-top:15px; font-size:14px;}
+.DATU{ width:910px; height:400px; margin:50px auto;}
+.photo{ float:left; width:830px; margin-right:25px;}
+.photo2{ float:right; width:294px; height:394px;}
+

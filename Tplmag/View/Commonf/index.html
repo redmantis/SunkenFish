@@ -1,0 +1,44 @@
+<extend name="Public:base" />
+<block name="body">
+<body class="body">
+        <blockquote class="layui-elem-quote">
+        <div class="layui-inline">
+            <form class="layui-form" id="userSearchForm">   
+                <div class="layui-input-inline"> {$subsidlist.content}</div>   
+                <foreach name="searchdata" item="v" key="k"> 
+                    <div class="layui-input-inline tips" style="width: {$v.width}px;{$v.style}" tips="{$v.titledesc}">
+                        {$v.content}
+                    </div>
+                </foreach>
+                <a class="layui-btn userSearchList_btn" lay-submit lay-filter="userSearchFilter"><i class="layui-icon layui-icon-search"></i>查询</a>
+            </form>
+        </div>
+            {$buttonlist}
+            <div class="layui-inline btn-reflash"></div>
+    </blockquote>
+    
+    <table class="layui-table" id="dateTable" lay-filter="dateTable" lay-even  lay-size="sm">
+        <thead>
+            <tr>
+                <th><input type="checkbox" /></th>
+        <foreach name="showmap" item="v" key='k'>
+            <th>{$v|showtableTitle=$k}</th>  
+        </foreach>  
+    </tr> 
+</thead>
+<tbody id="view">
+
+</tbody>
+</table>
+<div class="larry-table-page clearfix" id="userPage"></div>
+</body>
+<script id="htmltemplates" type="text/html">  
+        {{#  layui.each(d.list, function(index, item){ }}        
+        {:showtplbymap($showmap,$idfiledname)}
+        {{#  }); }} 
+        {{#  if(d.list.length === 0){ }}
+        无数据
+        {{#  } }}     
+</script>
+<script src="__STATIC__/js/tablelist.js?t={:MUYUVERSION}" type="text/javascript"></script>
+</block>

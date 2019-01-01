@@ -1,0 +1,10 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div class="tm-plan-boxes-container">
+        <ul class="breadcrumb">
+            <li><a href="javascript:;" class="breadcrumbs__url"><i class="fa fa-home"></i></a></li>
+            <foreach name="mbx" item="v" key="key"> 
+                <li><a href="{:creat_url_lan('/news/'.$v['viewpath'])}">{$v.title}</a></li>
+            </foreach>
+        </ul>
+    </div>
+</div>
